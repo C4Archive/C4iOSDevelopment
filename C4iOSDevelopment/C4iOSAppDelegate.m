@@ -1,26 +1,28 @@
 //
-//  AppDelegate.m
-//  C4iOSDevelopment
+//  C4iOSAppDelegate.m
+//  C4iOS
 //
-//  Created by Travis Kirton on 11-10-01.
-//  Copyright (c) 2011 mediart. All rights reserved.
+//  Created by Travis Kirton on 11-08-23.
+//  Copyright 2011 mediart. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "C4iOSAppDelegate.h"
+#import "C4Canvas.h"
+#import "C4Shape.h"
 
-#import "ViewController.h"
-
-@implementation AppDelegate
+@implementation C4iOSAppDelegate
 
 @synthesize window = _window;
-@synthesize viewController = _viewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
-    self.window.rootViewController = self.viewController;
+    [application setStatusBarHidden:YES];
+    
+    controller = [[C4CanvasController alloc] init];
+    controller.canvas = (C4Canvas *)self.window.layer;
+    [controller setup];
+    [self.window setController:controller];
+
     [self.window makeKeyAndVisible];
     return YES;
 }

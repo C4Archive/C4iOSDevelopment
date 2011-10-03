@@ -12,9 +12,18 @@
 		ED6605781437CF31003881DA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED6605771437CF31003881DA /* CoreGraphics.framework */; };
 		ED66057E1437CF31003881DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ED66057C1437CF31003881DA /* InfoPlist.strings */; };
 		ED6605801437CF31003881DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ED66057F1437CF31003881DA /* main.m */; };
-		ED6605841437CF31003881DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6605831437CF31003881DA /* AppDelegate.m */; };
-		ED6605871437CF31003881DA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6605861437CF31003881DA /* ViewController.m */; };
-		ED66058A1437CF31003881DA /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED6605881437CF31003881DA /* ViewController.xib */; };
+		ED6605B01437D6B7003881DA /* C4iOSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ED66059B1437D6B7003881DA /* C4iOSAppDelegate.m */; };
+		ED6605B11437D6B7003881DA /* C4Layer.m in Sources */ = {isa = PBXBuildFile; fileRef = ED66059E1437D6B7003881DA /* C4Layer.m */; };
+		ED6605B21437D6B7003881DA /* C4Window.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6605A01437D6B7003881DA /* C4Window.m */; };
+		ED6605B31437D6B7003881DA /* C4Foundation.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6605A21437D6B7003881DA /* C4Foundation.m */; };
+		ED6605B41437D6B7003881DA /* C4Canvas.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6605A41437D6B7003881DA /* C4Canvas.m */; };
+		ED6605B51437D6B7003881DA /* C4CanvasController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6605A61437D6B7003881DA /* C4CanvasController.m */; };
+		ED6605B61437D6B7003881DA /* C4Shape.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6605A81437D6B7003881DA /* C4Shape.m */; };
+		ED6605B71437D6B7003881DA /* C4GlobalShapeAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6605AA1437D6B7003881DA /* C4GlobalShapeAttributes.m */; };
+		ED6605B81437D6B7003881DA /* C4Color.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6605AC1437D6B7003881DA /* C4Color.m */; };
+		ED6605B91437D6B7003881DA /* C4Object.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6605AE1437D6B7003881DA /* C4Object.m */; };
+		ED6605BA1437D6B7003881DA /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED6605AF1437D6B7003881DA /* MainWindow.xib */; };
+		ED6605BC1437D743003881DA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED6605BB1437D743003881DA /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,11 +35,29 @@
 		ED66057D1437CF31003881DA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		ED66057F1437CF31003881DA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		ED6605811437CF31003881DA /* C4iOSDevelopment-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "C4iOSDevelopment-Prefix.pch"; sourceTree = "<group>"; };
-		ED6605821437CF31003881DA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		ED6605831437CF31003881DA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		ED6605851437CF31003881DA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		ED6605861437CF31003881DA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		ED6605891437CF31003881DA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		ED66059A1437D6B7003881DA /* C4iOSAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4iOSAppDelegate.h; sourceTree = "<group>"; };
+		ED66059B1437D6B7003881DA /* C4iOSAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4iOSAppDelegate.m; sourceTree = "<group>"; };
+		ED66059C1437D6B7003881DA /* C4Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4Defines.h; sourceTree = "<group>"; };
+		ED66059D1437D6B7003881DA /* C4Layer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4Layer.h; sourceTree = "<group>"; };
+		ED66059E1437D6B7003881DA /* C4Layer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4Layer.m; sourceTree = "<group>"; };
+		ED66059F1437D6B7003881DA /* C4Window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4Window.h; sourceTree = "<group>"; };
+		ED6605A01437D6B7003881DA /* C4Window.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4Window.m; sourceTree = "<group>"; };
+		ED6605A11437D6B7003881DA /* C4Foundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4Foundation.h; sourceTree = "<group>"; };
+		ED6605A21437D6B7003881DA /* C4Foundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4Foundation.m; sourceTree = "<group>"; };
+		ED6605A31437D6B7003881DA /* C4Canvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4Canvas.h; sourceTree = "<group>"; };
+		ED6605A41437D6B7003881DA /* C4Canvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4Canvas.m; sourceTree = "<group>"; };
+		ED6605A51437D6B7003881DA /* C4CanvasController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4CanvasController.h; sourceTree = "<group>"; };
+		ED6605A61437D6B7003881DA /* C4CanvasController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4CanvasController.m; sourceTree = "<group>"; };
+		ED6605A71437D6B7003881DA /* C4Shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4Shape.h; sourceTree = "<group>"; };
+		ED6605A81437D6B7003881DA /* C4Shape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4Shape.m; sourceTree = "<group>"; };
+		ED6605A91437D6B7003881DA /* C4GlobalShapeAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4GlobalShapeAttributes.h; sourceTree = "<group>"; };
+		ED6605AA1437D6B7003881DA /* C4GlobalShapeAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4GlobalShapeAttributes.m; sourceTree = "<group>"; };
+		ED6605AB1437D6B7003881DA /* C4Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4Color.h; sourceTree = "<group>"; };
+		ED6605AC1437D6B7003881DA /* C4Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4Color.m; sourceTree = "<group>"; };
+		ED6605AD1437D6B7003881DA /* C4Object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4Object.h; sourceTree = "<group>"; };
+		ED6605AE1437D6B7003881DA /* C4Object.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4Object.m; sourceTree = "<group>"; };
+		ED6605AF1437D6B7003881DA /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		ED6605BB1437D743003881DA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED6605BC1437D743003881DA /* QuartzCore.framework in Frameworks */,
 				ED6605741437CF31003881DA /* UIKit.framework in Frameworks */,
 				ED6605761437CF31003881DA /* Foundation.framework in Frameworks */,
 				ED6605781437CF31003881DA /* CoreGraphics.framework in Frameworks */,
@@ -70,6 +98,7 @@
 				ED6605731437CF31003881DA /* UIKit.framework */,
 				ED6605751437CF31003881DA /* Foundation.framework */,
 				ED6605771437CF31003881DA /* CoreGraphics.framework */,
+				ED6605BB1437D743003881DA /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -77,11 +106,28 @@
 		ED6605791437CF31003881DA /* C4iOSDevelopment */ = {
 			isa = PBXGroup;
 			children = (
-				ED6605821437CF31003881DA /* AppDelegate.h */,
-				ED6605831437CF31003881DA /* AppDelegate.m */,
-				ED6605851437CF31003881DA /* ViewController.h */,
-				ED6605861437CF31003881DA /* ViewController.m */,
-				ED6605881437CF31003881DA /* ViewController.xib */,
+				ED66059A1437D6B7003881DA /* C4iOSAppDelegate.h */,
+				ED66059B1437D6B7003881DA /* C4iOSAppDelegate.m */,
+				ED66059C1437D6B7003881DA /* C4Defines.h */,
+				ED66059D1437D6B7003881DA /* C4Layer.h */,
+				ED66059E1437D6B7003881DA /* C4Layer.m */,
+				ED66059F1437D6B7003881DA /* C4Window.h */,
+				ED6605A01437D6B7003881DA /* C4Window.m */,
+				ED6605A11437D6B7003881DA /* C4Foundation.h */,
+				ED6605A21437D6B7003881DA /* C4Foundation.m */,
+				ED6605A31437D6B7003881DA /* C4Canvas.h */,
+				ED6605A41437D6B7003881DA /* C4Canvas.m */,
+				ED6605A51437D6B7003881DA /* C4CanvasController.h */,
+				ED6605A61437D6B7003881DA /* C4CanvasController.m */,
+				ED6605A71437D6B7003881DA /* C4Shape.h */,
+				ED6605A81437D6B7003881DA /* C4Shape.m */,
+				ED6605A91437D6B7003881DA /* C4GlobalShapeAttributes.h */,
+				ED6605AA1437D6B7003881DA /* C4GlobalShapeAttributes.m */,
+				ED6605AB1437D6B7003881DA /* C4Color.h */,
+				ED6605AC1437D6B7003881DA /* C4Color.m */,
+				ED6605AD1437D6B7003881DA /* C4Object.h */,
+				ED6605AE1437D6B7003881DA /* C4Object.m */,
+				ED6605AF1437D6B7003881DA /* MainWindow.xib */,
 				ED66057A1437CF31003881DA /* Supporting Files */,
 			);
 			path = C4iOSDevelopment;
@@ -150,7 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED66057E1437CF31003881DA /* InfoPlist.strings in Resources */,
-				ED66058A1437CF31003881DA /* ViewController.xib in Resources */,
+				ED6605BA1437D6B7003881DA /* MainWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,8 +208,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED6605801437CF31003881DA /* main.m in Sources */,
-				ED6605841437CF31003881DA /* AppDelegate.m in Sources */,
-				ED6605871437CF31003881DA /* ViewController.m in Sources */,
+				ED6605B01437D6B7003881DA /* C4iOSAppDelegate.m in Sources */,
+				ED6605B11437D6B7003881DA /* C4Layer.m in Sources */,
+				ED6605B21437D6B7003881DA /* C4Window.m in Sources */,
+				ED6605B31437D6B7003881DA /* C4Foundation.m in Sources */,
+				ED6605B41437D6B7003881DA /* C4Canvas.m in Sources */,
+				ED6605B51437D6B7003881DA /* C4CanvasController.m in Sources */,
+				ED6605B61437D6B7003881DA /* C4Shape.m in Sources */,
+				ED6605B71437D6B7003881DA /* C4GlobalShapeAttributes.m in Sources */,
+				ED6605B81437D6B7003881DA /* C4Color.m in Sources */,
+				ED6605B91437D6B7003881DA /* C4Object.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,14 +230,6 @@
 				ED66057D1437CF31003881DA /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		ED6605881437CF31003881DA /* ViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ED6605891437CF31003881DA /* en */,
-			);
-			name = ViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -277,6 +323,7 @@
 				ED66058F1437CF31003881DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
