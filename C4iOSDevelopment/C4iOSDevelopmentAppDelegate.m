@@ -17,6 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    application.statusBarHidden = YES;
     self.window = [[C4Window alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.canvasController = [[C4CanvasController alloc] initWithNibName:@"C4CanvasController" bundle:nil];

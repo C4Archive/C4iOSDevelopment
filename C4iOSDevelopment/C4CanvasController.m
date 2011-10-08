@@ -20,31 +20,30 @@
 }
 
 -(void)reset {
-    
-    C4Log(@"controller reset");
     [canvas removeAllShapes];
     [C4Shape setFillColor:[UIColor colorWithRed:1.0f green:0.2f blue:0.2f alpha:1.0f]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(350, 612) size:CGSizeMake(100, 100)]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(250, 612) size:CGSizeMake(100, 100)]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(150, 612) size:CGSizeMake(100, 100)]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(150, 512) size:CGSizeMake(100, 100)]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(150, 412) size:CGSizeMake(100, 100)]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(150, 312) size:CGSizeMake(100, 100)]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(250, 312) size:CGSizeMake(100, 100)]];
+    [canvas addShape:[C4Shape rectAt:CGPointMake(351, 605) size:CGSizeMake(100, 101)]];
+    [canvas addShape:[C4Shape rectAt:CGPointMake(251, 605) size:CGSizeMake(100, 101)]];
+    [canvas addShape:[C4Shape rectAt:CGPointMake(151, 605) size:CGSizeMake(100, 101)]];
+    [canvas addShape:[C4Shape rectAt:CGPointMake(151, 505) size:CGSizeMake(100, 101)]];
+    [canvas addShape:[C4Shape rectAt:CGPointMake(151, 405) size:CGSizeMake(100, 101)]];
+    [canvas addShape:[C4Shape rectAt:CGPointMake(151, 305) size:CGSizeMake(100, 101)]];
+    [canvas addShape:[C4Shape rectAt:CGPointMake(251, 305) size:CGSizeMake(100, 101)]];
     
     [C4Shape setFillColor:[UIColor colorWithRed:0.2 green:0.4 blue:1.0f alpha:1.0f]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(550, 312) size:CGSizeMake(100, 100)]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(550, 412) size:CGSizeMake(100, 100)]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(550, 612) size:CGSizeMake(100, 100)]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(650, 512) size:CGSizeMake(100, 100)]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(550, 512) size:CGSizeMake(100, 100)]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(450, 512) size:CGSizeMake(100, 100)]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(350, 512) size:CGSizeMake(100, 100)]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(350, 412) size:CGSizeMake(100, 100)]];
+    [canvas addShape:[C4Shape rectAt:CGPointMake(551, 305) size:CGSizeMake(100, 101)]];
+    [canvas addShape:[C4Shape rectAt:CGPointMake(551, 405) size:CGSizeMake(100, 101)]];
+    [canvas addShape:[C4Shape rectAt:CGPointMake(551, 605) size:CGSizeMake(100, 101)]];
+    [canvas addShape:[C4Shape rectAt:CGPointMake(651, 505) size:CGSizeMake(100, 101)]];
+    [canvas addShape:[C4Shape rectAt:CGPointMake(551, 505) size:CGSizeMake(100, 101)]];
+    [canvas addShape:[C4Shape rectAt:CGPointMake(451, 505) size:CGSizeMake(100, 101)]];
+    [canvas addShape:[C4Shape rectAt:CGPointMake(351, 505) size:CGSizeMake(100, 101)]];
+    [canvas addShape:[C4Shape rectAt:CGPointMake(351, 405) size:CGSizeMake(100, 101)]];
     
     [C4Shape setFillColor:[UIColor colorWithWhite:0.13 alpha:1.0f]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(350, 312) size:CGSizeMake(100, 100)]];
+    [canvas addShape:[C4Shape rectAt:CGPointMake(351, 305) size:CGSizeMake(100, 101)]];
     
+    [C4Shape setStrokeColor:[UIColor colorWithWhite:0 alpha:1.0f]];
     [canvas addShape:[C4Shape pointAt:CGPointMake(10, 10)]];
     
     [canvas display];

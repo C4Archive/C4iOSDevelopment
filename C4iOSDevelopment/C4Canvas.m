@@ -14,6 +14,7 @@
     self = [super init];
     if(self) {
         readyToDisplay = NO;
+        self.borderWidth = 0.0f;
     }
     return self;
 }
