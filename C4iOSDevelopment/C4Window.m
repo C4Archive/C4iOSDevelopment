@@ -19,11 +19,6 @@
         C4Log(@"%@ init",[self class]);
 #endif
 
-        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] init];
-        pan.minimumNumberOfTouches = 1;
-        pan.maximumNumberOfTouches = 5;
-        
-        [self addGestureRecognizer:pan];
     }
     return self;
 }
@@ -45,10 +40,6 @@
  */
 +(Class)layerClass {
     return [C4Canvas class];
-}
-
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    [(C4Canvas *)self.layer receiveMovedTouches:touches withEvent:event];
 }
 
 @end

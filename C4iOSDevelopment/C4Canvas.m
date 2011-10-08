@@ -35,25 +35,13 @@
     [self addSublayer:newShape];
 }
 
--(void)removeAllShapes {
-    for(CALayer *layer in self.sublayers) {
-        [layer removeFromSuperlayer];
-    }
-}
-
 -(void)addLayer:(C4Layer *)newLayer {
     [self addSublayer:newLayer];
 }
 
 -(void)receiveMovedTouches:(NSSet *)touches withEvent:(UIEvent *)theEvent {
     for(UITouch *touch in touches) {
-        for(C4Shape *layer in self.sublayers) {
-            CGPoint location = [touch locationInView:[touch view]];
-            if([layer hitTest:location]) {
-                layer.position = location;
-                break;
-            }
-        }
+        [self addShape:[C4Shape lineFrom:[touch previousLocationInView:[touch view]] to:[touch locationInView:[touch view]]]];
     }
 }
 

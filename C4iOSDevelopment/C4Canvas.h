@@ -16,7 +16,6 @@ BOOL readyToDisplay;
 }
 -(void)addShape:(C4Shape *)newShape;
 -(void)addLayer:(C4Layer *)newLayer;
--(void)removeAllShapes;
 -(void)receiveMovedTouches:(NSSet *)touches withEvent:(UIEvent *)theEvent;
 
 @end

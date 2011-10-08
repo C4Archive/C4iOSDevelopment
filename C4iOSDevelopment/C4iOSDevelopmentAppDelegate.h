@@ -11,9 +11,10 @@
 
 @class C4CanvasController;
 
-@interface C4iOSDevelopmentAppDelegate : UIResponder <UIApplicationDelegate>
+@interface C4iOSDevelopmentAppDelegate : NSObject <UIApplicationDelegate> {
+}
 
-@property (strong, nonatomic) C4Window *window;
+@property (strong, nonatomic) IBOutlet C4Window *window;
 
 @property (strong, nonatomic, retain) C4CanvasController *canvasController;
 
