@@ -1,9 +1,9 @@
 //
 //  C4Canvas.m
-//  C4iOS
+//  C4iOSDevelopment
 //
-//  Created by Travis Kirton on 11-08-23.
-//  Copyright 2011 mediart. All rights reserved.
+//  Created by Travis Kirton on 11-10-07.
+//  Copyright (c) 2011 mediart. All rights reserved.
 //
 
 #import "C4Canvas.h"
@@ -21,6 +21,7 @@
 -(void)setup {
     [self setOpaque:YES];
     readyToDisplay = YES;
+
 }
 
 -(void)display {
@@ -54,4 +55,5 @@
         }
     }
 }
+
 @end

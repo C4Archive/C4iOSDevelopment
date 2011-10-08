@@ -1,14 +1,12 @@
 //
 //  C4Object.h
-//  C4iOS
+//  C4iOSDevelopment
 //
-//  Created by Travis Kirton on 11-08-24.
-//  Copyright 2011 mediart. All rights reserved.
+//  Created by Travis Kirton on 11-10-07.
+//  Copyright (c) 2011 mediart. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "C4Defines.h"
-#import "C4Foundation.h"
 
 @interface C4Object : NSObject
 -(void)setup;

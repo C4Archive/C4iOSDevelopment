@@ -1,9 +1,9 @@
 //
 //  C4Foundation.m
-//  C4iOS
+//  C4iOSDevelopment
 //
-//  Created by Travis Kirton on 11-08-24.
-//  Copyright 2011 mediart. All rights reserved.
+//  Created by Travis Kirton on 11-10-07.
+//  Copyright (c) 2011 mediart. All rights reserved.
 //
 
 #import "C4Foundation.h"
@@ -14,9 +14,9 @@
 {
     self = [super init];
     if (self) {
-        #ifdef VERBOSE
+#ifdef VERBOSE
         C4Log(@"%@ init",[self class]);
-        #endif
+#endif
     }
     
     return self;

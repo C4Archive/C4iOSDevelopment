@@ -1,12 +1,14 @@
 //
 //  C4Shape.m
-//  C4iOS
+//  C4iOSDevelopment
 //
-//  Created by Travis Kirton on 11-08-23.
-//  Copyright 2011 mediart. All rights reserved.
+//  Created by Travis Kirton on 11-10-07.
+//  Copyright (c) 2011 mediart. All rights reserved.
 //
 
 #import "C4Shape.h"
+#import "C4GlobalShapeAttributes.h"
+
 @interface C4Shape ()
 -(void)setupShapeAttributes;
 -(CAShapeLayer *)applyAttributesToShapeLayer:(CAShapeLayer *)shapeLayer;
@@ -52,15 +54,15 @@
 }
 
 +(C4Shape *)ellipseAt:(CGPoint)origin size:(CGSize)size {
-
+    
     C4Shape *newEllipse = [[C4Shape alloc] init];
     CGRect ellipseRect = CGRectZero;
     ellipseRect.size = size;
-
+    
     UIBezierPath *ellipsePath = [UIBezierPath bezierPathWithOvalInRect:ellipseRect];
     
     [newEllipse addPath:ellipsePath];
-
+    
     newEllipse.position = origin;
     
     return newEllipse;
@@ -82,12 +84,12 @@
 +(C4Shape *)triangleFrom:(CGPoint)pointA to:(CGPoint)pointB to:(CGPoint)pointC {
     C4Shape *newTriangle = [[C4Shape alloc] init];
     UIBezierPath *trianglePath = [UIBezierPath bezierPath];
-
+    
     pointB.x -= pointA.x;
     pointB.y -= pointA.y;
     pointC.x -= pointA.x;
     pointC.y -= pointA.y;
-
+    
     [trianglePath moveToPoint:CGPointZero];
     [trianglePath addLineToPoint:pointB];
     [trianglePath addLineToPoint:pointC];
@@ -95,24 +97,24 @@
     [newTriangle addPath:trianglePath];
     
     newTriangle.position = pointA;
-
+    
     /*
      APPARENTLY ANCHOR POINT DOESN'T WORK...
-    //adjust anchorpoint to pointA
-    CGRect triangleBounds = [trianglePath bounds];
-
-    CGFloat anchorPointX = 0.0f;
-    anchorPointX += fabsf(triangleBounds.origin.x);
-    anchorPointX /= fabsf(triangleBounds.size.width);
-    if(triangleBounds.origin.x > 0.0f) anchorPointX *= -1;
-    
-    CGFloat anchorPointY = 0.0f;
-    anchorPointY += fabsf(triangleBounds.origin.y);
-    anchorPointY /= fabsf(triangleBounds.size.height);
-    if(triangleBounds.origin.y > 0.0f) anchorPointY *= -1;
-    
-    newTriangle.anchorPoint = CGPointMake(anchorPointX, anchorPointY);
-    */
+     //adjust anchorpoint to pointA
+     CGRect triangleBounds = [trianglePath bounds];
+     
+     CGFloat anchorPointX = 0.0f;
+     anchorPointX += fabsf(triangleBounds.origin.x);
+     anchorPointX /= fabsf(triangleBounds.size.width);
+     if(triangleBounds.origin.x > 0.0f) anchorPointX *= -1;
+     
+     CGFloat anchorPointY = 0.0f;
+     anchorPointY += fabsf(triangleBounds.origin.y);
+     anchorPointY /= fabsf(triangleBounds.size.height);
+     if(triangleBounds.origin.y > 0.0f) anchorPointY *= -1;
+     
+     newTriangle.anchorPoint = CGPointMake(anchorPointX, anchorPointY);
+     */
     return newTriangle;
 }
 
@@ -120,7 +122,7 @@
     NSInteger pointCount = sizeof(points);
     
     if(pointCount > 1) {
-
+        
         C4Shape *newPolygon = [[C4Shape alloc] init];
         UIBezierPath *polygonPath = [UIBezierPath bezierPath];
         
@@ -134,26 +136,26 @@
         }
         
         [newPolygon addPath:polygonPath];
-
+        
         newPolygon.position = points[0];
         
         /*
          APPARENTLY ANCHOR POINT DOESN'T WORK...
-        //adjust anchorpoint to points[0]
-        CGRect polygonBounds = [polygonPath bounds];
-        
-        CGFloat anchorPointX = 0.0f;
-        anchorPointX += fabsf(polygonBounds.origin.x);
-        anchorPointX /= fabsf(polygonBounds.size.width);
-        if(polygonBounds.origin.x > 0.0f) anchorPointX *= -1;
-        
-        CGFloat anchorPointY = 0.0f;
-        anchorPointY += fabsf(polygonBounds.origin.y);
-        anchorPointY /= fabsf(polygonBounds.size.height);
-        if(polygonBounds.origin.y > 0.0f) anchorPointY *= -1;
-        
-        newPolygon.anchorPoint = CGPointMake(anchorPointX, anchorPointY);
-        */
+         //adjust anchorpoint to points[0]
+         CGRect polygonBounds = [polygonPath bounds];
+         
+         CGFloat anchorPointX = 0.0f;
+         anchorPointX += fabsf(polygonBounds.origin.x);
+         anchorPointX /= fabsf(polygonBounds.size.width);
+         if(polygonBounds.origin.x > 0.0f) anchorPointX *= -1;
+         
+         CGFloat anchorPointY = 0.0f;
+         anchorPointY += fabsf(polygonBounds.origin.y);
+         anchorPointY /= fabsf(polygonBounds.size.height);
+         if(polygonBounds.origin.y > 0.0f) anchorPointY *= -1;
+         
+         newPolygon.anchorPoint = CGPointMake(anchorPointX, anchorPointY);
+         */
         return newPolygon;
     }
     return nil;
@@ -208,7 +210,7 @@
     shapeLayer.path = [path CGPath];
     shapeLayer.strokeColor = nil;
     if (self.usesGlobalAttributes) {
-        shapeLayer.fillColor = [[C4GlobalShapeAttributes sharedClass].fillColor CGColor];
+        shapeLayer.fillColor = [[C4GlobalShapeAttributes sharedManager].fillColor CGColor];
     } else {
         shapeLayer.fillColor = [self.fillColor CGColor];
     }
@@ -309,47 +311,47 @@
 }
 
 +(void)setLineDashPhase:(CGFloat)lineDashPhase {
-    [C4GlobalShapeAttributes sharedClass].lineDashPhase = lineDashPhase;
+    [C4GlobalShapeAttributes sharedManager].lineDashPhase = lineDashPhase;
 }
 
 +(void)setLineWidth:(CGFloat)lineWidth {
-    [C4GlobalShapeAttributes sharedClass].lineWidth = lineWidth;
+    [C4GlobalShapeAttributes sharedManager].lineWidth = lineWidth;
 }
 
 +(void)setMiterLimit:(CGFloat)miterLimit {
-    [C4GlobalShapeAttributes sharedClass].miterLimit = miterLimit;
+    [C4GlobalShapeAttributes sharedManager].miterLimit = miterLimit;
 }
 
 +(void)setStrokeEnd:(CGFloat)strokeEnd {
-    [C4GlobalShapeAttributes sharedClass].strokeEnd = strokeEnd;
+    [C4GlobalShapeAttributes sharedManager].strokeEnd = strokeEnd;
 }
 
 +(void)setStrokeStart:(CGFloat)strokeStart {
-    [C4GlobalShapeAttributes sharedClass].strokeStart = strokeStart;
+    [C4GlobalShapeAttributes sharedManager].strokeStart = strokeStart;
 }
 
 +(void)setFillColor:(UIColor *)fillColor {
-    [C4GlobalShapeAttributes sharedClass].fillColor = fillColor;
+    [C4GlobalShapeAttributes sharedManager].fillColor = fillColor;
 }
 
 +(void)setFillRule:(NSString *)fillRule {
-    [C4GlobalShapeAttributes sharedClass].fillRule = fillRule;
+    [C4GlobalShapeAttributes sharedManager].fillRule = fillRule;
 }
 
 +(void)setLineCap:(NSString *)lineCap {
-    [C4GlobalShapeAttributes sharedClass].lineCap = lineCap;
+    [C4GlobalShapeAttributes sharedManager].lineCap = lineCap;
 }
 
 +(void)setLineDashPattern:(NSArray *)lineDashPattern {
-    [C4GlobalShapeAttributes sharedClass].lineDashPattern = lineDashPattern;
+    [C4GlobalShapeAttributes sharedManager].lineDashPattern = lineDashPattern;
 }
 
 +(void)setLineJoin:(NSString *)lineJoin {
-    [C4GlobalShapeAttributes sharedClass].lineJoin = lineJoin;
+    [C4GlobalShapeAttributes sharedManager].lineJoin = lineJoin;
 }
 
 +(void)setStrokeColor:(UIColor *)strokeColor {
-    [C4GlobalShapeAttributes sharedClass].strokeColor = strokeColor;
+    [C4GlobalShapeAttributes sharedManager].strokeColor = strokeColor;
 }
 
 -(void)setUsesGlobalAttributes:(BOOL)_usesGlobalAttributes {
@@ -361,17 +363,17 @@
 
 -(CAShapeLayer *)applyAttributesToShapeLayer:(CAShapeLayer *)shapeLayer {
     if(self.usesGlobalAttributes == YES) {
-        shapeLayer.fillColor = [[C4GlobalShapeAttributes sharedClass].fillColor CGColor];
-        shapeLayer.fillRule = [C4GlobalShapeAttributes sharedClass].fillRule;
-        shapeLayer.lineCap = [C4GlobalShapeAttributes sharedClass].lineCap;
-        shapeLayer.lineDashPattern = [C4GlobalShapeAttributes sharedClass].lineDashPattern;
-        shapeLayer.lineDashPhase = [C4GlobalShapeAttributes sharedClass].lineDashPhase;
-        shapeLayer.lineJoin = [C4GlobalShapeAttributes sharedClass].lineJoin;
-        shapeLayer.lineWidth = [C4GlobalShapeAttributes sharedClass].lineWidth;
-        shapeLayer.miterLimit = [C4GlobalShapeAttributes sharedClass].miterLimit;
-        shapeLayer.strokeColor = [[C4GlobalShapeAttributes sharedClass].strokeColor CGColor];
-        shapeLayer.strokeStart = [C4GlobalShapeAttributes sharedClass].strokeStart;
-        shapeLayer.strokeEnd = [C4GlobalShapeAttributes sharedClass].strokeEnd;
+        shapeLayer.fillColor = [[C4GlobalShapeAttributes sharedManager].fillColor CGColor];
+        shapeLayer.fillRule = [C4GlobalShapeAttributes sharedManager].fillRule;
+        shapeLayer.lineCap = [C4GlobalShapeAttributes sharedManager].lineCap;
+        shapeLayer.lineDashPattern = [C4GlobalShapeAttributes sharedManager].lineDashPattern;
+        shapeLayer.lineDashPhase = [C4GlobalShapeAttributes sharedManager].lineDashPhase;
+        shapeLayer.lineJoin = [C4GlobalShapeAttributes sharedManager].lineJoin;
+        shapeLayer.lineWidth = [C4GlobalShapeAttributes sharedManager].lineWidth;
+        shapeLayer.miterLimit = [C4GlobalShapeAttributes sharedManager].miterLimit;
+        shapeLayer.strokeColor = [[C4GlobalShapeAttributes sharedManager].strokeColor CGColor];
+        shapeLayer.strokeStart = [C4GlobalShapeAttributes sharedManager].strokeStart;
+        shapeLayer.strokeEnd = [C4GlobalShapeAttributes sharedManager].strokeEnd;
     } else {
         shapeLayer.fillColor = [self.fillColor CGColor];
         shapeLayer.fillRule = self.fillRule;

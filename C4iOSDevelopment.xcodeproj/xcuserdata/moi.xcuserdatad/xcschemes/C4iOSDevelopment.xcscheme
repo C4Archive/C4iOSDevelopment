@@ -13,7 +13,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ED66056E1437CF31003881DA"
+               BlueprintIdentifier = "ED9F5B89143E4ACA00D869B3"
                BuildableName = "C4iOSDevelopment.app"
                BlueprintName = "C4iOSDevelopment"
                ReferencedContainer = "container:C4iOSDevelopment.xcodeproj">
@@ -31,7 +31,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "ED66056E1437CF31003881DA"
+            BlueprintIdentifier = "ED9F5B89143E4ACA00D869B3"
             BuildableName = "C4iOSDevelopment.app"
             BlueprintName = "C4iOSDevelopment"
             ReferencedContainer = "container:C4iOSDevelopment.xcodeproj">
@@ -49,7 +49,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "ED66056E1437CF31003881DA"
+            BlueprintIdentifier = "ED9F5B89143E4ACA00D869B3"
             BuildableName = "C4iOSDevelopment.app"
             BlueprintName = "C4iOSDevelopment"
             ReferencedContainer = "container:C4iOSDevelopment.xcodeproj">
@@ -67,7 +67,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "ED66056E1437CF31003881DA"
+            BlueprintIdentifier = "ED9F5B89143E4ACA00D869B3"
             BuildableName = "C4iOSDevelopment.app"
             BlueprintName = "C4iOSDevelopment"
             ReferencedContainer = "container:C4iOSDevelopment.xcodeproj">

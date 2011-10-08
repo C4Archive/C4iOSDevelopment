@@ -1,17 +1,15 @@
 //
 //  C4Color.h
-//  C4iOS
+//  C4iOSDevelopment
 //
-//  Created by Travis Kirton on 11-08-24.
-//  Copyright 2011 mediart. All rights reserved.
+//  Created by Travis Kirton on 11-10-07.
+//  Copyright (c) 2011 mediart. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "C4Object.h"
+#import "C4Foundation.h"
 
 @interface C4Color : C4Object {
-    @private
-    UIColor *cColor;
 }
 
 +(C4Color *)colorWithWhite:(CGFloat)white;
@@ -66,5 +64,5 @@
 -(CGFloat)greenComponent;
 -(CGFloat)alphaComponent;
 
-@property(readonly,retain) UIColor *cColor;
+@property(readwrite,retain) UIColor *cColor;
 @end
