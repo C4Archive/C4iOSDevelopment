@@ -8,8 +8,10 @@
 
 #import "C4Layer.h"
 #import "C4Shape.h"
-#import "UITouch+C4Touch.h"
 #import "C4Foundation.h"
+#import "C4String.h"
+#import "C4TextLayer.h"
+#import <CoreText/CoreText.h>
 
 @interface C4Canvas : C4Layer {
 @private
@@ -18,6 +20,7 @@
 }
 -(void)addShape:(C4Shape *)newShape;
 -(void)addLayer:(C4Layer *)newLayer;
+-(void)addTextLayer:(C4TextLayer *)newLayer;
 -(void)receiveTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)theEvent;
 -(void)receiveTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)theEvent;
 -(void)test;
