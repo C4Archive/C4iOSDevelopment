@@ -13,7 +13,7 @@
 -(void)setupShapeAttributes;
 -(CAShapeLayer *)applyAttributesToShapeLayer:(CAShapeLayer *)shapeLayer;
 -(void)addPath:(UIBezierPath *)path;
--(void)addPoint:(UIBezierPath *)path;
+-(void)addPointPath:(UIBezierPath *)path;   //slightly modified version of addPath
 @end
 
 @implementation C4Shape
@@ -165,7 +165,7 @@
     C4Shape *newPoint = [[C4Shape alloc] init];
     
     UIBezierPath *pointPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, 1, 1)];
-    [newPoint addPoint:pointPath];
+    [newPoint addPointPath:pointPath];
     newPoint.position = origin;
     return newPoint;
 }
@@ -201,7 +201,13 @@
     [self addSublayer:[self applyAttributesToShapeLayer:shapeLayer]];
 }
 
--(void)addPoint:(UIBezierPath *)path {
+-(void)addPointToShape:(CGPoint)newPoint {
+    CAShapeLayer *layer = [shapeArray objectAtIndex:0];
+    CGMutablePathRef mutablePath = CGPathCreateMutableCopy(layer.path);
+    CGPathAddLineToPoint(mutablePath, nil, newPoint.x, newPoint.y);
+}
+
+-(void)addPointPath:(UIBezierPath *)path {
     if(shapeArray == nil) {
         shapeArray = [[NSMutableArray alloc] initWithCapacity:0];
     }

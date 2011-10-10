@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface C4Object : NSObject
+@interface C4Object : NSObject {
+}
 -(void)setup;
 -(void)listenFor:(NSString *)aNotification andRunMethod:(NSString *)aMethodName;
 -(void)stopListeningFor:(NSString *)aMethodName;
 -(void)postNotification:(NSString *)aNotification;
+
+@property (nonatomic, readwrite) NSTimeInterval timestamp;
 @end

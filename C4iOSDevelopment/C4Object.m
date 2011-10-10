@@ -10,6 +10,8 @@
 
 @implementation C4Object
 
+@synthesize timestamp;
+
 - (id)init
 {
     self = [super init];
@@ -34,4 +36,10 @@
 -(void)postNotification:(NSString *)aNotification {
 	[[NSNotificationCenter defaultCenter] postNotificationName:aNotification object:self];
 }
+
+-(void)setTimestamp:(NSTimeInterval)_timestamp {
+    if(self.timestamp == 0.0f)
+        self.timestamp = _timestamp;
+}
+
 @end

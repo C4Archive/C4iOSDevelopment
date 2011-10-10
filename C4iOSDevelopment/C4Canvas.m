@@ -39,10 +39,16 @@
     [self addSublayer:newLayer];
 }
 
--(void)receiveMovedTouches:(NSSet *)touches withEvent:(UIEvent *)theEvent {
-    for(UITouch *touch in touches) {
-        [self addShape:[C4Shape lineFrom:[touch previousLocationInView:[touch view]] to:[touch locationInView:[touch view]]]];
-    }
+-(void)receiveTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)theEvent {
 }
 
+-(void)receiveTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)theEvent {
+}
+
+-(void)receiveTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)theEvent {
+}
+
+-(void)test {
+    C4Log(@"test");
+}
 @end

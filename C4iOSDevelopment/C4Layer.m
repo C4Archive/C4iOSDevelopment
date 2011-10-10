@@ -10,6 +10,7 @@
 
 @implementation C4Layer
 
+@synthesize timeStamp = _timeStamp;
 - (id)init
 {
     self = [super init];
@@ -44,4 +45,12 @@
 -(void)postNotification:(NSString *)aNotification {
 	[[NSNotificationCenter defaultCenter] postNotificationName:aNotification object:self];
 }
+
+-(void)setTimestamp:(NSTimeInterval)newTimestamp {
+    C4Log(@"before: %4.2f",self.timeStamp);
+    if(self.timeStamp == 0.0f)
+        _timeStamp = newTimestamp;
+    C4Log(@"after: %4.2f",self.timeStamp);
+}
+
 @end

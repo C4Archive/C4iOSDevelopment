@@ -7,8 +7,10 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
+#import "C4Foundation.h"
 
-@interface C4Layer : CALayer
+@interface C4Layer : CALayer {
+}
 
 -(void)setup;
 
@@ -16,4 +18,5 @@
 -(void)stopListeningFor:(NSString *)aMethodName;
 -(void)postNotification:(NSString *)aNotification;
 
+@property (nonatomic, readwrite) NSTimeInterval timeStamp;
 @end

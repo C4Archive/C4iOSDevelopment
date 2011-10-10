@@ -8,14 +8,17 @@
 
 #import "C4Layer.h"
 #import "C4Shape.h"
+#import "UITouch+C4Touch.h"
 #import "C4Foundation.h"
 
 @interface C4Canvas : C4Layer {
 @private
-BOOL readyToDisplay;
+    BOOL readyToDisplay;
+    NSMutableArray *currentShapeArray;
 }
 -(void)addShape:(C4Shape *)newShape;
 -(void)addLayer:(C4Layer *)newLayer;
--(void)receiveMovedTouches:(NSSet *)touches withEvent:(UIEvent *)theEvent;
-
+-(void)receiveTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)theEvent;
+-(void)receiveTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)theEvent;
+-(void)test;
 @end

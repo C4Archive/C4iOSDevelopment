@@ -48,5 +48,5 @@
 @property (nonatomic, readwrite, retain) NSArray *lineDashPattern;
 @property (nonatomic, readwrite, retain) NSString *lineJoin;
 @property (nonatomic, readwrite, retain) UIColor *strokeColor;
-@property (nonatomic, readwrite,nonatomic) BOOL usesGlobalAttributes;
+@property (nonatomic, readwrite) BOOL usesGlobalAttributes;
 @end

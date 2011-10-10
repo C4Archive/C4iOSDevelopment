@@ -13,9 +13,33 @@
 @synthesize canvas;
 -(void)setup {
     [canvas setBackgroundColor:[[UIColor whiteColor] CGColor]];
+    
+    /* 
+     
+     Oct. 9/2011
+     
+     I'm not sure how this view stuf works... 
+     I thought it was Window->CALayer
+     
+     But, apparently, there's a UIView in between somewhere...
+     Should the canvas be this view?
+     I would prefer it as a CALayer...
+     
+     */
+    
+    
     self.view.userInteractionEnabled = YES;
     self.view.multipleTouchEnabled = YES;
     self.view.exclusiveTouch = YES;
+
+    /* This is how to add taps */
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:canvas action:@selector(test)];
+    tap.numberOfTapsRequired=2;
+    [self.view addGestureRecognizer:tap];
+
+    /* --- */
+    
     [self reset];
 }
 
@@ -93,13 +117,10 @@
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    NSLog(@"tb:%d",[touches count]);
+    [canvas receiveTouchesBegan:touches withEvent:event];
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    NSLog(@"tm:%d",[touches count]);
-    [canvas receiveMovedTouches:touches withEvent:event];
+    [canvas receiveTouchesMoved:touches withEvent:event];
 }
-
-
 @end
