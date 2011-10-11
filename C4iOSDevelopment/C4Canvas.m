@@ -21,29 +21,8 @@
 
 -(void)setup {
     [self setOpaque:YES];
-    self.borderWidth = 10.0f;
-    self.borderColor = [UIColor blueColor].CGColor;
-    
+    self.backgroundColor = [UIColor whiteColor].CGColor;
     readyToDisplay = YES;
-    
-//    CATextLayer *layer = [CATextLayer layer];
-//    
-//    layer.wrapped = YES;
-//    layer.string = @"C4 is a new Programming Framework";
-//    
-//    layer.backgroundColor = [UIColor blueColor].CGColor;
-//    
-//    layer.bounds = CGRectMake(10, 10, 100, 100);
-//    
-//    CTFontRef ctFont = CTFontCreateWithName(CFSTR("Futura-Medium"), 12.0f, NULL);        
-//    
-//    layer.font =  ctFont;
-//    
-//    layer.position = CGPointMake(250, 250);
-//    C4Log(@"layer count:%d",[self.sublayers count]);
-//    [self addSublayer:layer];
-//    C4Log(@"layer count:%d",[self.sublayers count]);
-//    [self setNeedsDisplay];
 }
 
 -(void)display {
@@ -74,6 +53,14 @@
 }
 
 -(void)test {
+    for(C4TextLayer *layer in self.sublayers) {
+//        if([layer class] == [C4TextLayer class]) {
+//            layer.uiFont = [UIFont fontWithName:@"Futura" size:20.0f];
+//        }
+//        if([layer class] == [C4TextLayer class]) {
+//            [layer fitTextToWidth:2200.0f withMaximumFontSize:<#(CGFloat)#>];
+//        }
+    }
     C4Log(@"test");
 }
 @end
