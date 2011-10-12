@@ -9,10 +9,12 @@
 #import <QuartzCore/QuartzCore.h>
 #import <CoreText/CoreText.h>
 #import "C4Foundation.h"
+#import "C4String.h"
 
 @interface C4TextLayer : CATextLayer
 
 +(C4TextLayer *)layerWithString:(NSString *)string;
++(C4TextLayer *)layerWithC4String:(C4String *)string andRect:(CGRect)rect;
 +(C4TextLayer *)layerWithString:(NSString *)string andRect:(CGRect)rect;
 
 -(void)resizeBounds;

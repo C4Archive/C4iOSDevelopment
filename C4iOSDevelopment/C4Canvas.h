@@ -18,6 +18,7 @@
     BOOL readyToDisplay;
     NSMutableArray *currentShapeArray;
 }
+
 -(void)addShape:(C4Shape *)newShape;
 -(void)addLayer:(C4Layer *)newLayer;
 -(void)addTextLayer:(C4TextLayer *)newLayer;

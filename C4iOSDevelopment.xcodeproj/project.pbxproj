@@ -21,6 +21,7 @@
 		ED750C52143FA16600D19FEF /* C4Color.m in Sources */ = {isa = PBXBuildFile; fileRef = ED750C51143FA16600D19FEF /* C4Color.m */; };
 		ED750C55143FA41100D19FEF /* C4Shape.m in Sources */ = {isa = PBXBuildFile; fileRef = ED750C54143FA41000D19FEF /* C4Shape.m */; };
 		ED750C58143FA43100D19FEF /* C4GlobalShapeAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = ED750C57143FA43100D19FEF /* C4GlobalShapeAttributes.m */; };
+		ED7C56C51444B86700B3C090 /* C4Font.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7C56C41444B86700B3C090 /* C4Font.m */; };
 		ED9F5B8F143E4ACA00D869B3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9F5B8E143E4ACA00D869B3 /* UIKit.framework */; };
 		ED9F5B91143E4ACA00D869B3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9F5B90143E4ACA00D869B3 /* Foundation.framework */; };
 		ED9F5B93143E4ACA00D869B3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9F5B92143E4ACA00D869B3 /* CoreGraphics.framework */; };
@@ -69,6 +70,8 @@
 		ED750C54143FA41000D19FEF /* C4Shape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4Shape.m; sourceTree = "<group>"; };
 		ED750C56143FA43000D19FEF /* C4GlobalShapeAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4GlobalShapeAttributes.h; sourceTree = "<group>"; };
 		ED750C57143FA43100D19FEF /* C4GlobalShapeAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4GlobalShapeAttributes.m; sourceTree = "<group>"; };
+		ED7C56C31444B86700B3C090 /* C4Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4Font.h; sourceTree = "<group>"; };
+		ED7C56C41444B86700B3C090 /* C4Font.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4Font.m; sourceTree = "<group>"; };
 		ED9F5B8A143E4ACA00D869B3 /* C4iOSDevelopment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = C4iOSDevelopment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED9F5B8E143E4ACA00D869B3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		ED9F5B90143E4ACA00D869B3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -163,6 +166,8 @@
 				ED750C54143FA41000D19FEF /* C4Shape.m */,
 				ED3AF1551443EC74007DB652 /* C4String.h */,
 				ED3AF1561443EC74007DB652 /* C4String.m */,
+				ED7C56C31444B86700B3C090 /* C4Font.h */,
+				ED7C56C41444B86700B3C090 /* C4Font.m */,
 				EDA19C531442AC18007C6ACE /* C4GlobalStringAttributes.h */,
 				EDA19C541442AC18007C6ACE /* C4GlobalStringAttributes.m */,
 				ED750C56143FA43000D19FEF /* C4GlobalShapeAttributes.h */,
@@ -292,6 +297,7 @@
 				EDA19C581442ACAA007C6ACE /* C4GlobalTypeAttributes.m in Sources */,
 				ED2516EE14439265005D5A7D /* C4TextLayer.m in Sources */,
 				ED3AF1571443EC74007DB652 /* C4String.m in Sources */,
+				ED7C56C51444B86700B3C090 /* C4Font.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

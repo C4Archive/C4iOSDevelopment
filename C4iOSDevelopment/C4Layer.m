@@ -47,10 +47,8 @@
 }
 
 -(void)setTimestamp:(NSTimeInterval)newTimestamp {
-    C4Log(@"before: %4.2f",self.timeStamp);
     if(self.timeStamp == 0.0f)
         _timeStamp = newTimestamp;
-    C4Log(@"after: %4.2f",self.timeStamp);
 }
 
 @end

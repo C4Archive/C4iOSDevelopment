@@ -25,7 +25,6 @@
      
      */
     
-    
     self.view.userInteractionEnabled = YES;
     self.view.multipleTouchEnabled = YES;
     self.view.exclusiveTouch = YES;
@@ -41,37 +40,24 @@
 }
 
 -(void)reset {
-    [C4Shape setFillColor:[UIColor colorWithRed:1.0f green:0.2f blue:0.2f alpha:1.0f]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(351, 602) size:CGSizeMake(100, 100)]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(251, 602) size:CGSizeMake(100, 100)]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(151, 602) size:CGSizeMake(100, 100)]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(151, 502) size:CGSizeMake(100, 100)]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(151, 402) size:CGSizeMake(100, 100)]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(151, 302) size:CGSizeMake(100, 100)]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(251, 302) size:CGSizeMake(100, 100)]];
+    C4String *s = [[C4String alloc] initWithFormat:@"POSTFL COCOA v%4.2f",0.2f];
+    s = [s stringByAppendingString:@" -> hi"];
     
-    [C4Shape setFillColor:[UIColor colorWithRed:0.2 green:0.4 blue:1.0f alpha:1.0f]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(551, 302) size:CGSizeMake(100, 100)]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(551, 402) size:CGSizeMake(100, 100)]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(551, 602) size:CGSizeMake(100, 100)]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(651, 502) size:CGSizeMake(100, 100)]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(551, 502) size:CGSizeMake(100, 100)]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(451, 502) size:CGSizeMake(100, 100)]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(351, 502) size:CGSizeMake(100, 100)]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(351, 402) size:CGSizeMake(100, 101)]];
-    
-    [C4Shape setFillColor:[UIColor colorWithWhite:0.13 alpha:1.0f]];
-    [canvas addShape:[C4Shape rectAt:CGPointMake(351, 302) size:CGSizeMake(100, 100)]];
-    
-    [C4Shape setStrokeColor:[UIColor colorWithWhite:0 alpha:1.0f]];
-    [canvas addShape:[C4Shape pointAt:CGPointMake(10, 10)]];
+    C4TextLayer *layer = [C4TextLayer layerWithC4String:s andRect:CGRectMake(0, 0, 1, 1)];
+    layer.position = CGPointMake(100, 100);
 
-    C4TextLayer *layer = [C4TextLayer layerWithString:@"COCOA FOR ARTISTS"];
-    layer.position = CGPointMake(100, 688);
+    C4String *t = [s substringFromIndex:5];
+    C4TextLayer *layer2 = [C4TextLayer layerWithC4String:t andRect:CGRectMake(0, 0, 1, 1)];
+    layer2.position = CGPointMake(100, 200);
+    
+//    C4String *u = [s substringToIndex:10];
+//    C4TextLayer *layer3 = [C4TextLayer layerWithC4String:u andRect:CGRectMake(0, 0, 1, 1)];
+//    layer3.position = CGPointMake(100, 300);
+
     [canvas addTextLayer:layer];
-
 }
-- (void)didReceiveMemoryWarning
+
+- (void)didReceiveMemoryWarning 
 {
     [super didReceiveMemoryWarning];
 }

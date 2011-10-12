@@ -7,10 +7,10 @@
 //
 
 #import "C4GlobalStringAttributes.h"
-static C4GlobalStringAttributes *shareC4GlobalStringAttributes = nil;
+static C4GlobalStringAttributes *sharedC4GlobalStringAttributes = nil;
 
 @implementation C4GlobalStringAttributes
-@synthesize pdfContext,drawStringsToPDF,isClean;
+@synthesize kernWidth,underlineVisible,backgroundVisible,backgroundColor,foregroundVisible,foregroundColor,font,timestamp,strokeColor,strokeWidth,strokeVisible,underlineColor,underlineStyle;
 
 #pragma mark Singleton
 
@@ -18,6 +18,23 @@ static C4GlobalStringAttributes *shareC4GlobalStringAttributes = nil;
 {
     if((self = [super init]))
     {
+        self.font = [UIFont systemFontOfSize:16.0f];
+        
+        self.foregroundColor = [UIColor blackColor];
+        self.foregroundVisible = YES;
+        
+        self.backgroundColor = [UIColor lightGrayColor];
+        self.backgroundVisible = NO;
+        
+        self.underlineStyle = kCTUnderlineStyleSingle | kCTUnderlinePatternSolid;
+        self.underlineColor = [UIColor blackColor];
+        self.underlineVisible = NO;
+        
+        self.strokeWidth = 0.0f;
+        self.strokeColor = [UIColor blueColor];
+        self.strokeVisible = NO;
+        
+        self.kernWidth = 0.0f;
     }
     
     return self;
@@ -25,15 +42,13 @@ static C4GlobalStringAttributes *shareC4GlobalStringAttributes = nil;
 
 + (C4GlobalStringAttributes*)sharedManager
 {
-    if (shareC4GlobalStringAttributes == nil) {
+    if (sharedC4GlobalStringAttributes == nil) {
         static dispatch_once_t once;
-        dispatch_once(&once, ^ { shareC4GlobalStringAttributes = [[super allocWithZone:NULL] init]; 
+        dispatch_once(&once, ^ { sharedC4GlobalStringAttributes = [[super allocWithZone:NULL] init]; 
         });
-        return shareC4GlobalStringAttributes;
-        
-        
+        return sharedC4GlobalStringAttributes;
     }
-    return shareC4GlobalStringAttributes;
+    return sharedC4GlobalStringAttributes;
 }
 
 + (id)allocWithZone:(NSZone *)zone

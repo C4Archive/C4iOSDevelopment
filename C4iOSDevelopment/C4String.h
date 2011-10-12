@@ -7,46 +7,34 @@
 //
 
 #import "C4Object.h"
+#import "C4Color.h"
+#import "C4Font.h"
+#import <CoreText/CoreText.h>
+#import "C4GlobalStringAttributes.h"
+
+#define NOLIGATURES 0
+#define BASICLIGATURES 1
+#define ALLLIGATURES 2
 
 @interface C4String : C4Object {
 @private 
-    NSAttributedString *string;
+    CFMutableAttributedStringRef stringRef;
+    CFNumberRef underlineStyleRef, strokeWidthRef, kernWidthRef;
 }
-@property (readwrite, retain) NSAttributedString *string;
-@end
 
-/*
-
-
- //
- //  C4String.h
- //  Created by Travis Kirton
- //
- 
- #import <Cocoa/Cocoa.h>
-
- advice from cocoa-dev: change method names, change C4 prefix...
- 
- NOT TOO SERIOUS
- CFAttributedString objects have problems in drawing underlines and strikethrough.
- 
- In particular, there are NO strikethrough options for drawing and the underline objects appear over top of one another.
- I wonder if Apple will fix these in the future... Not entirely essential...
- 
-
-@interface C4String : C4Object {
-	NSString			*string;
-	NSMutableDictionary	*attributes;
-}
 -(id)initWithString:(id)aString;
 -(id)initWithFormat:(NSString *)aFormatString, ...;
+-(void)appendString:(id)aString;
 -(C4String *)stringByAppendingString:(id)aString;
 -(C4String *)stringByAppendingFormat:(NSString *)aFormatString, ...;
--(C4String *)substringWithRange:(NSRange)range;
+-(C4String *)substringWithRange:(CFRange)range;
 -(C4String *)substringFromIndex:(NSInteger)index;
 -(C4String *)substringToIndex:(NSInteger)index;
 -(C4String *)stringByReplacingOccurencesOfString:(id)aString withString:(id)bString;
++(C4String *)stringWithString:(id)aString;
++(C4String *)stringWithFormat:(NSString *)aFormatString, ...;
 -(NSArray *)componentsSeparatedByString:(id)aString;
+-(void)trimStringToRange:(CFRange)range;
 
 -(BOOL)hasPrefix:(id)aString;
 -(BOOL)hasSuffix:(id)aString;
@@ -62,74 +50,35 @@
 -(NSInteger)integerValue;
 -(BOOL)boolValue;
 
--(void)drawAtPoint:(NSPoint)point;
--(void)drawAtPoint:(NSPoint)point withAttributes:(NSDictionary *)attribs;
--(void)drawInRect:(NSRect)rect;
--(void)drawInRect:(NSRect)rect withAttributes:(NSDictionary *)attribs;
-
-
--(NSSize)size;
--(NSSize)sizeWithAttributes:(NSDictionary *)attribs;
-
 -(void)font:(id)font;
 
--(void)fillColor:(id)color;
--(void)fill:(float)grey;
--(void)fill:(float)grey alpha:(float)alpha;
--(void)fillRed:(float)red green:(float)green blue:(float)blue;
--(void)fillRed:(float)red green:(float)green blue:(float)blue alpha:(float)a;
--(void)strokeColor:(id)color;
--(void)stroke:(float)grey;
--(void)stroke:(float)grey alpha:(float)alpha;
--(void)strokeRed:(float)red green:(float)green blue:(float)blue;
--(void)strokeRed:(float)red green:(float)green blue:(float)blue alpha:(float)a;
--(void)strokeWidth:(float)width;
--(void)underlineColor:(id)color;
--(void)underlineStyle:(NSInteger)style;
+-(void)foregroundColor:(id)color;
 -(void)strikethroughColor:(id)color;
--(void)strikethroughStyle:(NSInteger)style;
--(void)backgroundColor:(id)color;
--(void)baselineOffset:(float)value;
--(void)kern:(float)value;
+-(void)strokeColor:(id)color;
+-(void)underlineColor:(id)color;
 
--(void)noFill;
--(void)noStroke;
-
-+(C4String *)stringWithString:(id)aString;
-+(C4String *)stringWithFormat:(NSString *)aFormatString, ...;
-
-// change global settings in GlobalTypeAttributes
-+(void)font:(id)font;
-+(void)fillColor:(id)color;
-+(void)fill:(float)grey;
-+(void)fill:(float)grey alpha:(float)alpha;
-+(void)fillRed:(float)red green:(float)green blue:(float)blue;
-+(void)fillRed:(float)red green:(float)green blue:(float)blue alpha:(float)a;
-+(void)strokeColor:(id)color;
-+(void)stroke:(float)grey;
-+(void)stroke:(float)grey alpha:(float)alpha;
-+(void)strokeRed:(float)red green:(float)green blue:(float)blue;
-+(void)strokeRed:(float)red green:(float)green blue:(float)blue alpha:(float)a;
-+(void)strokeWidth:(float)width;
-+(void)underlineColor:(id)color;
-+(void)underlineStyle:(NSInteger)style;
-+(void)strikethroughColor:(id)color;
-+(void)strikethroughStyle:(NSInteger)style;
-+(void)backgroundColor:(id)color;
-+(void)baselineOffset:(float)value;
-+(void)kern:(float)value;
-+(void)noFill;
-+(void)noStroke;
+-(void)strokeWidth:(CGFloat)width;
+-(void)underlineStyle:(int32_t)style;
+-(void)strikethroughStyle:(int32_t)style;
+-(void)baselineOffset:(CGFloat)offset;
+-(void)kern:(CGFloat)kern;
+-(void)ligatureStyle:(int32_t)style;
 
 +(C4String *)globalAttributes;
 
-+(void)beginDrawStringsToPDFContext:(CGContextRef)context;
-+(void)endDrawStringsToPDFContext;
-
 +(NSString *)nsStringFromObject:(id)object;
 
-@property(readwrite, retain) NSString *string;
-@property(readwrite, retain) NSMutableDictionary *attributes;
+-(NSString *)string;
+-(CFStringRef)cfString;
+-(CFMutableAttributedStringRef)stringRef;
+
+@property (readwrite, strong, nonatomic) UIFont *font;
+@property (readwrite, strong, nonatomic) UIColor *underlineColor, *strokeColor, *foregroundColor, *backgroundColor;
+@property (readwrite, nonatomic) CGFloat strokeWidth, kernWidth;
+@property (readwrite, nonatomic) int32_t underlineStyle;
+@property (readwrite, nonatomic) BOOL foregroundVisible, backgroundVisible, strokeVisible, underlineVisible;
 @end
 
-*/
+@interface C4String (private)
+-(void)setString:(CFMutableAttributedStringRef)str;
+@end
