@@ -174,11 +174,10 @@
 }
 
 #pragma mark Style Methods
--(void)setFont:(UIFont *)_font {
+-(void)setFont:(C4Font *)_font {
     font = _font;
-    CTFontRef ctFont = CTFontCreateWithName((__bridge_retained CFStringRef)font.fontName, font.pointSize, NULL);
     CFAttributedStringBeginEditing(stringRef);
-    CFAttributedStringSetAttribute(stringRef, CFRangeMake(0, self.length), kCTFontAttributeName, ctFont);
+    CFAttributedStringSetAttribute(stringRef, CFRangeMake(0, self.length), kCTFontAttributeName, self.font.ctFont);
     CFAttributedStringEndEditing(stringRef);
 }
 
@@ -201,10 +200,10 @@
     CFAttributedStringEndEditing(stringRef);
 }
 
--(void)setUnderlineColor:(UIColor *)_underlineColor {
+-(void)setUnderlineColor:(C4Color *)_underlineColor {
     underlineColor = _underlineColor;
     CFAttributedStringBeginEditing(stringRef);
-        CFAttributedStringSetAttribute(stringRef, CFRangeMake(0, self.length), kCTUnderlineColorAttributeName, underlineColor.CGColor);
+        CFAttributedStringSetAttribute(stringRef, CFRangeMake(0, self.length), kCTUnderlineColorAttributeName, underlineColor.cgColor);
     CFAttributedStringEndEditing(stringRef);
 }
 
@@ -230,17 +229,18 @@
     CFAttributedStringEndEditing(stringRef);
 }
 
--(void)setStrokeColor:(UIColor *)_strokeColor {
+-(void)setStrokeColor:(C4Color *)_strokeColor {
     strokeColor = _strokeColor;
     CFAttributedStringBeginEditing(stringRef);
-    CFAttributedStringSetAttribute(stringRef, CFRangeMake(0, self.length), kCTStrokeColorAttributeName, strokeColor.CGColor);
+    CFAttributedStringSetAttribute(stringRef, CFRangeMake(0, self.length), kCTStrokeColorAttributeName, strokeColor.cgColor);
     CFAttributedStringEndEditing(stringRef);
 }
 
--(void)setForegroundColor:(UIColor *)_foregroundColor {
+-(void)setForegroundColor:(C4Color *)_foregroundColor {
     foregroundColor = _foregroundColor;
+    CGColorRef cgForegroundColor = CGColorCreateCopy(foregroundColor.cgColor);
     CFAttributedStringBeginEditing(stringRef);
-    CFAttributedStringSetAttribute(stringRef, CFRangeMake(0, self.length), kCTForegroundColorAttributeName, foregroundColor.CGColor);
+    CFAttributedStringSetAttribute(stringRef, CFRangeMake(0, self.length), kCTForegroundColorAttributeName, cgForegroundColor);
     CFAttributedStringEndEditing(stringRef);
 }
 
@@ -248,7 +248,7 @@
     foregroundVisible = _foregroundVisible;
     CFAttributedStringBeginEditing(stringRef);
     if(foregroundVisible == YES) {
-        CFAttributedStringSetAttribute(stringRef, CFRangeMake(0, self.length), kCTForegroundColorAttributeName, foregroundColor.CGColor);
+        CFAttributedStringSetAttribute(stringRef, CFRangeMake(0, self.length), kCTForegroundColorAttributeName, foregroundColor.cgColor);
     } else {
         CFAttributedStringSetAttribute(stringRef, CFRangeMake(0, self.length), kCTForegroundColorAttributeName, [UIColor clearColor].CGColor);
     }
@@ -388,6 +388,10 @@
     
     copiedString.kernWidth = self.kernWidth;
     return copiedString;
+}
+
+-(CGSize)sizeWithFont:(C4Font *)_font {
+    return [self.string sizeWithFont:_font.uiFont];
 }
 
 -(void)setString:(CFMutableAttributedStringRef)str {

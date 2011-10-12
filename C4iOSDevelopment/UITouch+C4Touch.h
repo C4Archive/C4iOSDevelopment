@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "C4Foundation.h"
+@class C4Foundation;
 
 @interface UITouch (C4Touch) 
 -(CGFloat)majorRadius;

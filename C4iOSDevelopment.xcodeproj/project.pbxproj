@@ -44,6 +44,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		ED1B7B951445F5EF00FA0B2C /* C4Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4Defines.h; sourceTree = "<group>"; };
 		ED21FEA31441538300A7ED16 /* UITouch+C4Touch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITouch+C4Touch.h"; sourceTree = "<group>"; };
 		ED21FEA41441538300A7ED16 /* UITouch+C4Touch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITouch+C4Touch.m"; sourceTree = "<group>"; };
 		ED2516EC14439265005D5A7D /* C4TextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4TextLayer.h; sourceTree = "<group>"; };
@@ -116,6 +117,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED1B7B921445F4DF00FA0B2C /* App */ = {
+			isa = PBXGroup;
+			children = (
+				ED1B7B951445F5EF00FA0B2C /* C4Defines.h */,
+				ED750C49143F9FF300D19FEF /* C4Imports.h */,
+				ED9F5B9D143E4ACA00D869B3 /* C4iOSDevelopmentAppDelegate.h */,
+				ED9F5B9E143E4ACA00D869B3 /* C4iOSDevelopmentAppDelegate.m */,
+				ED9F5BA0143E4ACA00D869B3 /* C4CanvasController.h */,
+				ED9F5BA1143E4ACA00D869B3 /* C4CanvasController.m */,
+				ED750C3D143F9D6C00D19FEF /* C4Window.h */,
+				ED750C3E143F9D6C00D19FEF /* C4Window.m */,
+				ED9F5BA3143E4ACA00D869B3 /* C4CanvasController.xib */,
+			);
+			name = App;
+			sourceTree = "<group>";
+		};
+		ED1B7B941445F4EE00FA0B2C /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				ED750C46143F9E6F00D19FEF /* C4Canvas.h */,
+				ED750C47143F9E6F00D19FEF /* C4Canvas.m */,
+				ED750C50143FA16600D19FEF /* C4Color.h */,
+				ED750C51143FA16600D19FEF /* C4Color.m */,
+				ED7C56C31444B86700B3C090 /* C4Font.h */,
+				ED7C56C41444B86700B3C090 /* C4Font.m */,
+				ED750C4A143FA09500D19FEF /* C4Foundation.h */,
+				ED750C4B143FA09500D19FEF /* C4Foundation.m */,
+				ED750C56143FA43000D19FEF /* C4GlobalShapeAttributes.h */,
+				ED750C57143FA43100D19FEF /* C4GlobalShapeAttributes.m */,
+				EDA19C531442AC18007C6ACE /* C4GlobalStringAttributes.h */,
+				EDA19C541442AC18007C6ACE /* C4GlobalStringAttributes.m */,
+				EDA19C561442ACAA007C6ACE /* C4GlobalTypeAttributes.h */,
+				EDA19C571442ACAA007C6ACE /* C4GlobalTypeAttributes.m */,
+				ED750C41143F9E1700D19FEF /* C4Layer.h */,
+				ED750C42143F9E1700D19FEF /* C4Layer.m */,
+				ED750C4D143FA10700D19FEF /* C4Object.h */,
+				ED750C4E143FA10700D19FEF /* C4Object.m */,
+				ED750C53143FA41000D19FEF /* C4Shape.h */,
+				ED750C54143FA41000D19FEF /* C4Shape.m */,
+				ED3AF1551443EC74007DB652 /* C4String.h */,
+				ED3AF1561443EC74007DB652 /* C4String.m */,
+				ED2516EC14439265005D5A7D /* C4TextLayer.h */,
+				ED2516ED14439265005D5A7D /* C4TextLayer.m */,
+				ED21FEA31441538300A7ED16 /* UITouch+C4Touch.h */,
+				ED21FEA41441538300A7ED16 /* UITouch+C4Touch.m */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
 		ED9F5B7F143E4ACA00D869B3 = {
 			isa = PBXGroup;
 			children = (
@@ -148,41 +198,9 @@
 		ED9F5B94143E4ACA00D869B3 /* C4iOSDevelopment */ = {
 			isa = PBXGroup;
 			children = (
-				ED9F5B9D143E4ACA00D869B3 /* C4iOSDevelopmentAppDelegate.h */,
-				ED9F5B9E143E4ACA00D869B3 /* C4iOSDevelopmentAppDelegate.m */,
-				ED750C41143F9E1700D19FEF /* C4Layer.h */,
-				ED750C42143F9E1700D19FEF /* C4Layer.m */,
-				ED750C3D143F9D6C00D19FEF /* C4Window.h */,
-				ED750C3E143F9D6C00D19FEF /* C4Window.m */,
-				ED750C4A143FA09500D19FEF /* C4Foundation.h */,
-				ED750C4B143FA09500D19FEF /* C4Foundation.m */,
-				ED750C46143F9E6F00D19FEF /* C4Canvas.h */,
-				ED750C47143F9E6F00D19FEF /* C4Canvas.m */,
-				ED21FEA31441538300A7ED16 /* UITouch+C4Touch.h */,
-				ED21FEA41441538300A7ED16 /* UITouch+C4Touch.m */,
-				ED9F5BA0143E4ACA00D869B3 /* C4CanvasController.h */,
-				ED9F5BA1143E4ACA00D869B3 /* C4CanvasController.m */,
-				ED750C53143FA41000D19FEF /* C4Shape.h */,
-				ED750C54143FA41000D19FEF /* C4Shape.m */,
-				ED3AF1551443EC74007DB652 /* C4String.h */,
-				ED3AF1561443EC74007DB652 /* C4String.m */,
-				ED7C56C31444B86700B3C090 /* C4Font.h */,
-				ED7C56C41444B86700B3C090 /* C4Font.m */,
-				EDA19C531442AC18007C6ACE /* C4GlobalStringAttributes.h */,
-				EDA19C541442AC18007C6ACE /* C4GlobalStringAttributes.m */,
-				ED750C56143FA43000D19FEF /* C4GlobalShapeAttributes.h */,
-				ED750C57143FA43100D19FEF /* C4GlobalShapeAttributes.m */,
-				EDA19C561442ACAA007C6ACE /* C4GlobalTypeAttributes.h */,
-				EDA19C571442ACAA007C6ACE /* C4GlobalTypeAttributes.m */,
-				ED2516EC14439265005D5A7D /* C4TextLayer.h */,
-				ED2516ED14439265005D5A7D /* C4TextLayer.m */,
-				ED750C50143FA16600D19FEF /* C4Color.h */,
-				ED750C51143FA16600D19FEF /* C4Color.m */,
-				ED750C4D143FA10700D19FEF /* C4Object.h */,
-				ED750C4E143FA10700D19FEF /* C4Object.m */,
-				ED9F5BA3143E4ACA00D869B3 /* C4CanvasController.xib */,
+				ED1B7B921445F4DF00FA0B2C /* App */,
 				ED9F5B95143E4ACA00D869B3 /* Supporting Files */,
-				ED750C49143F9FF300D19FEF /* C4Imports.h */,
+				ED1B7B941445F4EE00FA0B2C /* Source */,
 			);
 			path = C4iOSDevelopment;
 			sourceTree = "<group>";

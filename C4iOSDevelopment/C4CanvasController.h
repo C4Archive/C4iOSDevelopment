@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "C4Canvas.h"
-#import "C4Color.h"
 
 @interface C4CanvasController : UIViewController
 -(void)setup;

@@ -7,7 +7,6 @@
 //
 
 #import "C4Layer.h"
-#import "C4GlobalShapeAttributes.h"
 
 @interface C4Shape : C4Layer {
 @private

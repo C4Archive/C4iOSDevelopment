@@ -14,9 +14,9 @@
 +(C4TextLayer *)layerWithString:(id)string {
     CGSize size;
     if([string isKindOfClass:[NSString class]]) {
-        size = [string sizeWithFont:[C4GlobalStringAttributes sharedManager].font];
+        size = [string sizeWithFont:[C4GlobalStringAttributes sharedManager].font.uiFont];
     } else if ([string isKindOfClass:[C4String class]]) {
-        size = [((C4String *)string).string sizeWithFont:((C4String *)string).font];
+        size = [((C4String *)string) sizeWithFont:((C4String *)string).font];
     }
     
     return [C4TextLayer layerWithString:[C4String stringWithString:string] andRect:CGRectMake(0, 0, size.width, size.height)];
@@ -25,16 +25,16 @@
 +(C4TextLayer *)layerWithString:(C4String *)string andRect:(CGRect)rect {
     C4TextLayer *newLayer = [[C4TextLayer alloc] init];
 
-    UIFont *font = string.font;
-    CGSize size = [[string string] sizeWithFont:font];
+    C4Font *font = string.font;
+    CGSize size = [string sizeWithFont:font];
     [newLayer resizeBoundsToRect:CGRectMake(0, 0, size.width, size.height)];
         
-    newLayer.fontSize = font.pointSize;
+    newLayer.fontSize = font.fontSize;
     newLayer.anchorPoint = CGPointZero;
 
-    if(string.backgroundVisible == YES) 
-        newLayer.backgroundColor = string.backgroundColor.CGColor;
-
+    if(string.backgroundVisible == YES) {
+        newLayer.backgroundColor = [((C4String *)string).backgroundColor cgColor];
+    }
     newLayer.string = (__bridge NSAttributedString*)[string stringRef];
 
     return newLayer;

@@ -7,7 +7,6 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
-#import "C4Foundation.h"
 
 @interface C4Layer : CALayer {
 }

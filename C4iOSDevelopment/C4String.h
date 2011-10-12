@@ -7,10 +7,7 @@
 //
 
 #import "C4Object.h"
-#import "C4Color.h"
-#import "C4Font.h"
-#import <CoreText/CoreText.h>
-#import "C4GlobalStringAttributes.h"
+@class C4Font;
 
 #define NOLIGATURES 0
 #define BASICLIGATURES 1
@@ -56,8 +53,10 @@
 -(CFStringRef)cfString;
 -(CFMutableAttributedStringRef)stringRef;
 
-@property (readwrite, strong, nonatomic) UIFont *font;
-@property (readwrite, strong, nonatomic) UIColor *underlineColor, *strokeColor, *foregroundColor, *backgroundColor;
+-(CGSize)sizeWithFont:(C4Font *)_font;
+
+@property (readwrite, strong, nonatomic) C4Font *font;
+@property (readwrite, strong, nonatomic) C4Color *underlineColor, *strokeColor, *foregroundColor, *backgroundColor;
 @property (readwrite, nonatomic) CGFloat strokeWidth, kernWidth;
 @property (readwrite, nonatomic) int32_t underlineStyle;
 @property (readwrite, nonatomic) BOOL foregroundVisible, backgroundVisible, strokeVisible, underlineVisible;

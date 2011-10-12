@@ -7,11 +7,8 @@
 //
 
 #import "C4Layer.h"
-#import "C4Shape.h"
-#import "C4Foundation.h"
-#import "C4String.h"
-#import "C4TextLayer.h"
-#import <CoreText/CoreText.h>
+@class C4Shape;
+@class C4TextLayer;
 
 @interface C4Canvas : C4Layer {
 @private

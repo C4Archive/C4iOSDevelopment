@@ -46,7 +46,7 @@
         for(NSString *fontName in [UIFont fontNamesForFamilyName:familyName]) {
             C4String *newString = [[C4String alloc] initWithString:fontName];
 
-            newString.font = [UIFont fontWithName:fontName size:10.0f];
+            newString.font = [C4Font fontWithName:fontName size:10.0f];
 
             C4TextLayer *textLayer = [C4TextLayer layerWithString:newString];
             textLayer.position = position;

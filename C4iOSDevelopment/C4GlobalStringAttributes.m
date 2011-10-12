@@ -18,20 +18,20 @@ static C4GlobalStringAttributes *sharedC4GlobalStringAttributes = nil;
 {
     if((self = [super init]))
     {
-        self.font = [UIFont systemFontOfSize:16.0f];
+        self.font = [C4Font systemFontOfSize:16.0f];
         
-        self.foregroundColor = [UIColor blackColor];
+        self.foregroundColor = [C4Color blueColor];
         self.foregroundVisible = YES;
         
-        self.backgroundColor = [UIColor lightGrayColor];
+        self.backgroundColor = [C4Color clearColor];
         self.backgroundVisible = NO;
         
         self.underlineStyle = kCTUnderlineStyleSingle | kCTUnderlinePatternSolid;
-        self.underlineColor = [UIColor blackColor];
+        self.underlineColor = [C4Color blackColor];
         self.underlineVisible = NO;
         
         self.strokeWidth = 0.0f;
-        self.strokeColor = [UIColor blueColor];
+        self.strokeColor = [C4Color blackColor];
         self.strokeVisible = NO;
         
         self.kernWidth = 0.0f;

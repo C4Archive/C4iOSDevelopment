@@ -7,7 +7,6 @@
 //
 
 #import "C4Object.h"
-#import "C4Foundation.h"
 
 @interface C4Color : C4Object {
 }
@@ -48,21 +47,20 @@
 
 -(id)initWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
 -(id)initWithHue:(CGFloat)hue saturation:(CGFloat)saturation brightness:(CGFloat)brightness alpha:(CGFloat)alpha;
--(id)initWithColor:(id)color;
--(id)initWithCGColor:(CGColorRef)color;
--(id)initWithUIColor:(UIColor *)color;
+-(id)initWithUIColor:(UIColor *)aColor;
+-(id)initWithC4Color:(C4Color *)aColor;
+-(id)initWithCGColor:(CGColorRef)aColor;
 
 -(void)set;
 -(void)setFill;
 -(void)setStroke;
 
--(CGColorRef)CGcolor;
--(UIColor *)UIcolor;
 -(const CGFloat *)components;
 -(CGFloat)redComponent;
 -(CGFloat)blueComponent;
 -(CGFloat)greenComponent;
 -(CGFloat)alphaComponent;
 
-@property(readwrite,retain) UIColor *cColor;
+@property(readwrite, strong, nonatomic) UIColor *uiColor;
+@property(readonly) CGColorRef cgColor;
 @end

@@ -7,8 +7,6 @@
 //
 
 #import "C4Object.h"
-#import "C4String.h"
-#import <CoreText/CoreText.h>
 
 @interface C4GlobalTypeAttributes : C4Object {
 @private

@@ -7,9 +7,7 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
-#import <CoreText/CoreText.h>
-#import "C4Foundation.h"
-#import "C4String.h"
+@class C4String;
 
 @interface C4TextLayer : CATextLayer
 

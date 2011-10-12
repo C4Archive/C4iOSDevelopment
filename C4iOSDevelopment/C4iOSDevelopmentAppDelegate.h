@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "C4Window.h"
 
 @class C4CanvasController;
 
