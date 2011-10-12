@@ -22,9 +22,6 @@
 -(void)removeObjectForKey:(NSString *)key;
 -(id)objectForKey:(NSString *)key;
 
--(CFDictionaryRef)attributesAsCFDictionaryRef;
--(CFDictionaryRef)CFDictionaryRefFrom:(NSDictionary *)dictionary;
-
 @property(readwrite, retain) NSMutableDictionary *attributes;
 
 @end

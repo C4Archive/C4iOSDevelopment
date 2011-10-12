@@ -43,14 +43,10 @@
         self.kernWidth = [C4GlobalStringAttributes sharedManager].kernWidth;
     }
     else if ([aString isKindOfClass:[C4String class]]) {
-        CFAttributedStringBeginEditing(stringRef);
-        stringRef = CFAttributedStringCreateMutableCopy(kCFAllocatorDefault, 0, [(C4String *)aString stringRef]);
-        CFAttributedStringEndEditing(stringRef);
-        
-        self.font = ((C4String *)aString).font;
+        self = [(C4String *)aString copy];
     }
     else {
-        C4Log(@"Type is not C4String or NSString");
+        C4Log(@"%@ is not C4String or NSString",[aString class]);
         return nil;
     }
         
@@ -81,11 +77,11 @@
     CFAttributedStringRef stringToAppend;
     CFDictionaryRef attributesToAppend = CFAttributedStringGetAttributes(stringRef,0,NULL);
     
-    if ([aString class] == [C4String class]) {
-        stringToAppend = ((C4String *)aString).stringRef;
-    } else {
+    if ([aString isKindOfClass:[NSString class]]) {
         CFStringRef newString = CFStringCreateCopy(kCFAllocatorDefault, (__bridge CFStringRef)aString);
         stringToAppend = CFAttributedStringCreate(kCFAllocatorDefault, newString, attributesToAppend);
+    } else if ([aString isKindOfClass:[C4String class]]) {
+        stringToAppend = ((C4String *)aString).stringRef;
     }
     
     CFAttributedStringBeginEditing(stringRef);
@@ -112,7 +108,7 @@
 }
 
 -(void)trimStringToRange:(CFRange)range {
-    CFAttributedStringRef attributedSubstring = CFAttributedStringCreateWithSubstring(kCFAllocatorDefault, stringRef, range);
+    CFAttributedStringRef attributedSubstring = CFAttributedStringCreateWithSubstring(kCFAllocatorDefault, self.stringRef, range);
     
     CFAttributedStringBeginEditing(stringRef);    
         CFAttributedStringReplaceAttributedString(stringRef, CFRangeMake(0, CFAttributedStringGetLength(stringRef)), (CFAttributedStringRef)attributedSubstring);
@@ -126,7 +122,7 @@
 }
 
 -(C4String *)substringFromIndex:(NSInteger)index{ 
-    return [self substringWithRange:CFRangeMake(index, CFAttributedStringGetLength(stringRef))];
+    return [self substringWithRange:CFRangeMake(index, CFAttributedStringGetLength(stringRef)-index)];
 }
 
 
@@ -135,7 +131,46 @@
 }
 
 -(C4String *)stringByReplacingOccurencesOfString:(id)aString withString:(id)bString{ 
-    return nil; 
+    NSString *stringToFind = [[NSString alloc] init];
+    if([aString isKindOfClass:[NSString class]]) {
+        stringToFind = (NSString *)aString;
+    } else if ([aString isKindOfClass:[C4String class]]) {
+        stringToFind = ((C4String *)aString).string;
+    }
+
+    NSString *replacementString = [[NSString alloc] init];
+    if([bString isKindOfClass:[NSString class]]) {
+        replacementString = (NSString *)bString;
+    } else if ([bString isKindOfClass:[C4String class]]) {
+        replacementString = ((C4String *)bString).string;
+    }
+
+    NSString *newString = [[NSString alloc] init];
+    
+    newString = [self.string stringByReplacingOccurrencesOfString:stringToFind
+                                                                 withString:replacementString 
+                                                          options:NSCaseInsensitiveSearch
+                                                            range:NSMakeRange(0, self.string.length)];
+    C4String *newC4String = [C4String stringWithString:newString];
+
+    newC4String.font = self.font;
+    
+    newC4String.foregroundColor = self.foregroundColor;
+    newC4String.foregroundVisible = self.foregroundVisible;
+    
+    newC4String.backgroundColor = self.backgroundColor;
+    newC4String.backgroundVisible = self.backgroundVisible;
+    
+    newC4String.underlineStyle = self.underlineStyle;
+    newC4String.underlineColor = self.underlineColor;
+    newC4String.underlineVisible = self.underlineVisible;
+    
+    newC4String.strokeWidth = self.strokeWidth;
+    newC4String.strokeColor = self.strokeColor;
+    newC4String.strokeVisible = self.strokeVisible;
+    
+    newC4String.kernWidth = self.kernWidth;
+    return newC4String;
 }
 
 #pragma mark Style Methods
@@ -278,6 +313,7 @@
 
 -(C4String *)copyWithZone:(NSZone *)zone {
     C4String *copiedString = [[C4String alloc] initWithString:self.string];
+    
     copiedString.font = self.font;
     
     copiedString.foregroundColor = self.foregroundColor;

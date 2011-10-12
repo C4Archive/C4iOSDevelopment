@@ -13,9 +13,9 @@
 
 @interface C4TextLayer : CATextLayer
 
-+(C4TextLayer *)layerWithString:(NSString *)string;
-+(C4TextLayer *)layerWithC4String:(C4String *)string andRect:(CGRect)rect;
-+(C4TextLayer *)layerWithString:(NSString *)string andRect:(CGRect)rect;
++(C4TextLayer *)layerWithString:(id)string;
+//+(C4TextLayer *)layerWithC4String:(C4String *)string andRect:(CGRect)rect;
++(C4TextLayer *)layerWithString:(C4String *)string andRect:(CGRect)rect;
 
 -(void)resizeBounds;
 -(void)resizeBoundsToRect:(CGRect)rect;

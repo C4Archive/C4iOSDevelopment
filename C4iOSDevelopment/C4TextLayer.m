@@ -11,14 +11,18 @@
 @implementation C4TextLayer
 @synthesize uiFont;
 
-+(C4TextLayer *)layerWithString:(NSString *)string {
-    UIFont *font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:65.0f];    
-    CGSize size = [string sizeWithFont:font];
++(C4TextLayer *)layerWithString:(id)string {
+    CGSize size;
+    if([string isKindOfClass:[NSString class]]) {
+        size = [string sizeWithFont:[C4GlobalStringAttributes sharedManager].font];
+    } else if ([string isKindOfClass:[C4String class]]) {
+        size = [((C4String *)string).string sizeWithFont:((C4String *)string).font];
+    }
     
-    return [C4TextLayer layerWithString:string andRect:CGRectMake(0, 0, size.width, size.height)];
+    return [C4TextLayer layerWithString:[C4String stringWithString:string] andRect:CGRectMake(0, 0, size.width, size.height)];
 }
 
-+(C4TextLayer *)layerWithC4String:(C4String *)string andRect:(CGRect)rect {
++(C4TextLayer *)layerWithString:(C4String *)string andRect:(CGRect)rect {
     C4TextLayer *newLayer = [[C4TextLayer alloc] init];
 
     UIFont *font = string.font;
@@ -33,41 +37,6 @@
 
     newLayer.string = (__bridge NSAttributedString*)[string stringRef];
 
-    return newLayer;
-}
-
-+(C4TextLayer *)layerWithString:(NSString *)string andRect:(CGRect)rect {
-    C4TextLayer *newLayer = [[C4TextLayer alloc] init];
-    UIFont *font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:65.0f];    
-    newLayer.uiFont = font;
-    newLayer.wrapped = YES;
-    newLayer.bounds = rect;
-    newLayer.anchorPoint = CGPointMake(0, 0);
-    newLayer.backgroundColor = [UIColor clearColor].CGColor;
-    
-    newLayer.font =  CTFontCreateWithName((__bridge_retained CFStringRef)font.fontName, 0.0f, NULL);
-    newLayer.fontSize = font.pointSize;
-    
-    /* DOING THE FOLLOWING WITH CORE TEXT BECAUSE UIFONTS CRASH WHEN USING NSMUTABLEDICTIONARY OBJECTS */
-    
-    /* TO DO 
-     Need to make sure that the uiFont stays synced with what we create in the dictionary below when we modify the string 
-     */
-    CFMutableDictionaryRef dict = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, NULL, NULL);
-    CTFontRef ctFont = CTFontCreateWithName((__bridge CFStringRef)@"HelveticaNeue-UltraLight", 65.0f, NULL);
-    CFDictionaryAddValue(dict, kCTFontAttributeName, ctFont);
-    
-    int32_t underlineStyle = kCTUnderlineStyleSingle|kCTUnderlinePatternSolid;
-    CFDictionaryAddValue(dict, kCTUnderlineStyleAttributeName, CFNumberCreate(kCFAllocatorDefault, kCFNumberIntType, &underlineStyle));
-    
-    const CGFloat components[4] = {0.96f,0.96f,0.96f,1.0f};
-    CGColorRef underlineColor = CGColorCreate(CGColorSpaceCreateDeviceRGB(), components);
-    CFDictionaryAddValue(dict, kCTUnderlineColorAttributeName, underlineColor);
-    
-    CFAttributedStringRef attrstr = CFAttributedStringCreate(kCFAllocatorDefault, (__bridge CFStringRef)string, dict);
-    
-    newLayer.string = (__bridge NSAttributedString *)attrstr;
-    
     return newLayer;
 }
 

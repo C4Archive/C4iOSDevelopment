@@ -39,22 +39,27 @@
     [self reset];
 }
 
--(void)reset {
-    C4String *s = [[C4String alloc] initWithFormat:@"POSTFL COCOA v%4.2f",0.2f];
-    s = [s stringByAppendingString:@" -> hi"];
+-(void)reset {    
+    CGPoint position = CGPointMake(16, 16);
     
-    C4TextLayer *layer = [C4TextLayer layerWithC4String:s andRect:CGRectMake(0, 0, 1, 1)];
-    layer.position = CGPointMake(100, 100);
+    for(NSString *familyName in [UIFont familyNames]) {
+        for(NSString *fontName in [UIFont fontNamesForFamilyName:familyName]) {
+            C4String *newString = [[C4String alloc] initWithString:fontName];
+            newString.font = [UIFont fontWithName:fontName size:10.0f];
 
-    C4String *t = [s substringFromIndex:5];
-    C4TextLayer *layer2 = [C4TextLayer layerWithC4String:t andRect:CGRectMake(0, 0, 1, 1)];
-    layer2.position = CGPointMake(100, 200);
-    
-//    C4String *u = [s substringToIndex:10];
-//    C4TextLayer *layer3 = [C4TextLayer layerWithC4String:u andRect:CGRectMake(0, 0, 1, 1)];
-//    layer3.position = CGPointMake(100, 300);
+            C4TextLayer *textLayer = [C4TextLayer layerWithString:newString];
+            textLayer.position = position;
 
-    [canvas addTextLayer:layer];
+            [canvas addTextLayer:textLayer];
+            position.y += 24.0f;
+            if(position.y > 1000) {
+                position.x += 195.0f;
+                position.y = 16.0f;
+            }
+        }
+    }
+
+
 }
 
 - (void)didReceiveMemoryWarning 
