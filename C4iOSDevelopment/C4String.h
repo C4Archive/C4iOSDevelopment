@@ -50,22 +50,6 @@
 -(NSInteger)integerValue;
 -(BOOL)boolValue;
 
--(void)font:(id)font;
-
--(void)foregroundColor:(id)color;
--(void)strikethroughColor:(id)color;
--(void)strokeColor:(id)color;
--(void)underlineColor:(id)color;
-
--(void)strokeWidth:(CGFloat)width;
--(void)underlineStyle:(int32_t)style;
--(void)strikethroughStyle:(int32_t)style;
--(void)baselineOffset:(CGFloat)offset;
--(void)kern:(CGFloat)kern;
--(void)ligatureStyle:(int32_t)style;
-
-+(C4String *)globalAttributes;
-
 +(NSString *)nsStringFromObject:(id)object;
 
 -(NSString *)string;

@@ -263,13 +263,78 @@
     CFAttributedStringEndEditing(stringRef);
 }
 
--(NSArray *)componentsSeparatedByString:(id)aString{ return nil; }
+-(NSArray *)componentsSeparatedByString:(id)aString{ 
+    NSArray *components;
+    if([aString isKindOfClass:[NSString class]]) {
+        components = [[NSArray alloc] initWithArray:[self.string componentsSeparatedByString:(NSString *)aString]];
+    } else if ([aString isKindOfClass:[C4String class]]) {
+        components = [[NSArray alloc] initWithArray:[self.string componentsSeparatedByString:((C4String *)aString).string]];
+    }
+    return components;
+}
 
--(BOOL)hasPrefix:(id)aString{ return NO; }
--(BOOL)hasSuffix:(id)aString{ return NO; }
--(void)capitalizedString{}
--(void)lowercaseString{}
--(void)uppercaseString{}
+/*
+ if([aString isKindOfClass:[NSString class]]) {
+ } else if ([aString isKindOfClass:[C4String class]]) {
+ }
+*/
+
+-(BOOL)hasPrefix:(id)aString{ 
+    if([aString isKindOfClass:[NSString class]]) {
+        return [self.string hasPrefix:(NSString *)aString];
+    } else if ([aString isKindOfClass:[C4String class]]) {
+        return [self.string hasPrefix:((C4String *)aString).string];
+    }
+    return NO; 
+}
+
+-(BOOL)hasSuffix:(id)aString{ 
+    if([aString isKindOfClass:[NSString class]]) {
+        return [self.string hasSuffix:(NSString *)aString];
+    } else if ([aString isKindOfClass:[C4String class]]) {
+        return [self.string hasSuffix:((C4String *)aString).string];
+    }
+    return NO;
+}
+
+-(void)capitalizedString {
+    CFAttributedStringRef stringToAppend;
+    CFDictionaryRef attributesToAppend = CFAttributedStringGetAttributes(stringRef,0,NULL);
+    
+    NSString *newCapitalizedString = [self.string capitalizedString];
+    CFStringRef newString = CFStringCreateCopy(kCFAllocatorDefault, (__bridge CFStringRef)newCapitalizedString);
+    stringToAppend = CFAttributedStringCreate(kCFAllocatorDefault, newString, attributesToAppend);
+    
+    CFAttributedStringBeginEditing(stringRef);
+    CFAttributedStringReplaceAttributedString(stringRef, CFRangeMake(0,CFAttributedStringGetLength(stringRef)), stringToAppend);
+    CFAttributedStringEndEditing(stringRef);
+}
+
+-(void)lowercaseString {
+    CFAttributedStringRef stringToAppend;
+    CFDictionaryRef attributesToAppend = CFAttributedStringGetAttributes(stringRef,0,NULL);
+    
+    NSString *newLowercaseString = [self.string lowercaseString];
+    CFStringRef newString = CFStringCreateCopy(kCFAllocatorDefault, (__bridge CFStringRef)newLowercaseString);
+    stringToAppend = CFAttributedStringCreate(kCFAllocatorDefault, newString, attributesToAppend);
+    
+    CFAttributedStringBeginEditing(stringRef);
+    CFAttributedStringReplaceAttributedString(stringRef, CFRangeMake(0,CFAttributedStringGetLength(stringRef)), stringToAppend);
+    CFAttributedStringEndEditing(stringRef);
+}
+
+-(void)uppercaseString {
+    CFAttributedStringRef stringToAppend;
+    CFDictionaryRef attributesToAppend = CFAttributedStringGetAttributes(stringRef,0,NULL);
+    
+    NSString *newUppercaseString = [self.string uppercaseString];
+    CFStringRef newString = CFStringCreateCopy(kCFAllocatorDefault, (__bridge CFStringRef)newUppercaseString);
+    stringToAppend = CFAttributedStringCreate(kCFAllocatorDefault, newString, attributesToAppend);
+    
+    CFAttributedStringBeginEditing(stringRef);
+    CFAttributedStringReplaceAttributedString(stringRef, CFRangeMake(0,CFAttributedStringGetLength(stringRef)), stringToAppend);
+    CFAttributedStringEndEditing(stringRef);
+}
 
 -(NSInteger) length{
     return CFAttributedStringGetLength(stringRef);
@@ -281,23 +346,14 @@
 -(NSInteger)integerValue{ return 0; }
 -(BOOL)boolValue{ return NO; }
 
--(void)font:(id)font{}
-
--(void)foregroundColor:(id)color{}
--(void)strikethroughColor:(id)color{}
--(void)strokeColor:(id)color{}
--(void)underlineColor:(id)color{}
-
--(void)strokeWidth:(CGFloat)width{}
--(void)underlineStyle:(int32_t)style{}
--(void)strikethroughStyle:(int32_t)style{}
--(void)baselineOffset:(CGFloat)offset{}
--(void)kern:(CGFloat)kern{}
--(void)ligatureStyle:(int32_t)style{}
-
-+(C4String *)globalAttributes{ return nil; }
-
-+(NSString *)nsStringFromObject:(id)object{ return nil; }
++(NSString *)nsStringFromObject:(id)object{ 
+     if([object isKindOfClass:[NSString class]]) {
+         return (NSString *)object;
+     } else if ([object isKindOfClass:[C4String class]]) {
+         return ((C4String *)object).string;
+     }
+    return nil;
+}
 
 -(NSString *)string {
     return (__bridge NSString *)[self cfString];
@@ -335,13 +391,6 @@
 }
 
 -(void)setString:(CFMutableAttributedStringRef)str {
-    C4Log(@"hi %d", self.length);
     stringRef = str;
-    C4Log(@"hi %d", self.length);
 }
 @end
-
-
-const CFStringRef kCTLigatureAttributeName;
-const CFStringRef kCTParagraphStyleAttributeName;
-const CFStringRef kCTSuperscriptAttributeName;
