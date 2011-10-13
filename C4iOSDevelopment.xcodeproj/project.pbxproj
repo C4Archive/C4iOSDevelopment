@@ -12,6 +12,9 @@
 		ED2517011443D68D005D5A7D /* C4LogoiPad-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = ED2516FF1443D68C005D5A7D /* C4LogoiPad-Landscape.png */; };
 		ED2517021443D68D005D5A7D /* C4LogoiPad-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = ED2517001443D68D005D5A7D /* C4LogoiPad-Portrait.png */; };
 		ED3AF1571443EC74007DB652 /* C4String.m in Sources */ = {isa = PBXBuildFile; fileRef = ED3AF1561443EC74007DB652 /* C4String.m */; };
+		ED6E43DE1446243C0092B047 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED6E43DD1446243C0092B047 /* Accelerate.framework */; };
+		ED6E43E614464BAE0092B047 /* C4Image.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6E43E514464BAE0092B047 /* C4Image.m */; };
+		ED6E43EC1446507B0092B047 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED6E43EB1446507B0092B047 /* CoreImage.framework */; };
 		ED750C3F143F9D6C00D19FEF /* C4Window.m in Sources */ = {isa = PBXBuildFile; fileRef = ED750C3E143F9D6C00D19FEF /* C4Window.m */; };
 		ED750C43143F9E1700D19FEF /* C4Layer.m in Sources */ = {isa = PBXBuildFile; fileRef = ED750C42143F9E1700D19FEF /* C4Layer.m */; };
 		ED750C45143F9E3900D19FEF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED750C44143F9E3900D19FEF /* QuartzCore.framework */; };
@@ -53,6 +56,10 @@
 		ED2517001443D68D005D5A7D /* C4LogoiPad-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "C4LogoiPad-Portrait.png"; sourceTree = "<group>"; };
 		ED3AF1551443EC74007DB652 /* C4String.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4String.h; sourceTree = "<group>"; };
 		ED3AF1561443EC74007DB652 /* C4String.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4String.m; sourceTree = "<group>"; };
+		ED6E43DD1446243C0092B047 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		ED6E43E414464BAE0092B047 /* C4Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4Image.h; sourceTree = "<group>"; };
+		ED6E43E514464BAE0092B047 /* C4Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4Image.m; sourceTree = "<group>"; };
+		ED6E43EB1446507B0092B047 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		ED750C3D143F9D6C00D19FEF /* C4Window.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4Window.h; sourceTree = "<group>"; };
 		ED750C3E143F9D6C00D19FEF /* C4Window.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4Window.m; sourceTree = "<group>"; };
 		ED750C41143F9E1700D19FEF /* C4Layer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4Layer.h; sourceTree = "<group>"; };
@@ -106,6 +113,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED6E43EC1446507B0092B047 /* CoreImage.framework in Frameworks */,
+				ED6E43DE1446243C0092B047 /* Accelerate.framework in Frameworks */,
 				EDA19C5A1442ADB1007C6ACE /* CoreText.framework in Frameworks */,
 				ED750C45143F9E3900D19FEF /* QuartzCore.framework in Frameworks */,
 				ED9F5B8F143E4ACA00D869B3 /* UIKit.framework in Frameworks */,
@@ -120,12 +129,11 @@
 		ED1B7B921445F4DF00FA0B2C /* App */ = {
 			isa = PBXGroup;
 			children = (
+				ED9F5B95143E4ACA00D869B3 /* Supporting Files */,
 				ED1B7B951445F5EF00FA0B2C /* C4Defines.h */,
 				ED750C49143F9FF300D19FEF /* C4Imports.h */,
 				ED9F5B9D143E4ACA00D869B3 /* C4iOSDevelopmentAppDelegate.h */,
 				ED9F5B9E143E4ACA00D869B3 /* C4iOSDevelopmentAppDelegate.m */,
-				ED9F5BA0143E4ACA00D869B3 /* C4CanvasController.h */,
-				ED9F5BA1143E4ACA00D869B3 /* C4CanvasController.m */,
 				ED750C3D143F9D6C00D19FEF /* C4Window.h */,
 				ED750C3E143F9D6C00D19FEF /* C4Window.m */,
 				ED9F5BA3143E4ACA00D869B3 /* C4CanvasController.xib */,
@@ -150,6 +158,8 @@
 				EDA19C541442AC18007C6ACE /* C4GlobalStringAttributes.m */,
 				EDA19C561442ACAA007C6ACE /* C4GlobalTypeAttributes.h */,
 				EDA19C571442ACAA007C6ACE /* C4GlobalTypeAttributes.m */,
+				ED6E43E414464BAE0092B047 /* C4Image.h */,
+				ED6E43E514464BAE0092B047 /* C4Image.m */,
 				ED750C41143F9E1700D19FEF /* C4Layer.h */,
 				ED750C42143F9E1700D19FEF /* C4Layer.m */,
 				ED750C4D143FA10700D19FEF /* C4Object.h */,
@@ -186,6 +196,8 @@
 		ED9F5B8D143E4ACA00D869B3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ED6E43DD1446243C0092B047 /* Accelerate.framework */,
+				ED6E43EB1446507B0092B047 /* CoreImage.framework */,
 				EDA19C591442ADB1007C6ACE /* CoreText.framework */,
 				ED9F5B8E143E4ACA00D869B3 /* UIKit.framework */,
 				ED9F5B90143E4ACA00D869B3 /* Foundation.framework */,
@@ -198,9 +210,10 @@
 		ED9F5B94143E4ACA00D869B3 /* C4iOSDevelopment */ = {
 			isa = PBXGroup;
 			children = (
-				ED1B7B921445F4DF00FA0B2C /* App */,
-				ED9F5B95143E4ACA00D869B3 /* Supporting Files */,
+				ED9F5BA0143E4ACA00D869B3 /* C4CanvasController.h */,
+				ED9F5BA1143E4ACA00D869B3 /* C4CanvasController.m */,
 				ED1B7B941445F4EE00FA0B2C /* Source */,
+				ED1B7B921445F4DF00FA0B2C /* App */,
 			);
 			path = C4iOSDevelopment;
 			sourceTree = "<group>";
@@ -316,6 +329,7 @@
 				ED2516EE14439265005D5A7D /* C4TextLayer.m in Sources */,
 				ED3AF1571443EC74007DB652 /* C4String.m in Sources */,
 				ED7C56C51444B86700B3C090 /* C4Font.m in Sources */,
+				ED6E43E614464BAE0092B047 /* C4Image.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

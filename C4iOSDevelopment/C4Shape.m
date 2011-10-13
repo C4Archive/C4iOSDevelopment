@@ -396,6 +396,10 @@
     return shapeLayer;
 }
 
+-(void)addShape:(C4Shape *)newShape {
+    [self addSublayer:[newShape.sublayers objectAtIndex:0]];
+}
+
 -(void)setupShapeAttributes {
     self.shadowOffset = CGSizeMake(5.0f, 5.0f);
     self.fillColor = nil;

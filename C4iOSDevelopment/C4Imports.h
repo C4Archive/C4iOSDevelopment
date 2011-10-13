@@ -14,6 +14,7 @@
 #import "C4Color.h"
 #import "C4Font.h"
 #import "C4Foundation.h"
+#import "C4Image.h"
 #import "C4Layer.h"
 #import "C4Object.h"
 #import "C4Shape.h"

@@ -51,4 +51,7 @@
         _timeStamp = newTimestamp;
 }
 
+-(void)test {
+    
+}
 @end

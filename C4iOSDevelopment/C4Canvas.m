@@ -31,6 +31,10 @@
     }
 }
 
+-(void)addImage:(C4Image *)newImage {
+    [self addSublayer:newImage];
+}
+
 -(void)addShape:(C4Shape *)newShape {
     [self addSublayer:newShape];
 }

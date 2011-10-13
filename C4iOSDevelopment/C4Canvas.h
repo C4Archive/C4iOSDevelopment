@@ -7,6 +7,7 @@
 //
 
 #import "C4Layer.h"
+@class C4Image;
 @class C4Shape;
 @class C4TextLayer;
 
@@ -16,6 +17,7 @@
     NSMutableArray *currentShapeArray;
 }
 
+-(void)addImage:(C4Image *)newImage;
 -(void)addShape:(C4Shape *)newShape;
 -(void)addLayer:(C4Layer *)newLayer;
 -(void)addTextLayer:(C4TextLayer *)newLayer;

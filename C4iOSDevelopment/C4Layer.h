@@ -16,6 +16,7 @@
 -(void)listenFor:(NSString *)aNotification andRunMethod:(NSString *)aMethodName;
 -(void)stopListeningFor:(NSString *)aMethodName;
 -(void)postNotification:(NSString *)aNotification;
+-(void)test;
 
 @property (nonatomic, readwrite) NSTimeInterval timeStamp;
 @end

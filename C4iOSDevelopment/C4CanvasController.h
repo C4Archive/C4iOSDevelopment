@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface C4CanvasController : UIViewController
+@interface C4CanvasController : UIViewController {
+    C4Image *image;
+}
 -(void)setup;
 -(void)reset;
 @property (readwrite,retain) C4Canvas *canvas;

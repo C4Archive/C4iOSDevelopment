@@ -23,6 +23,7 @@
 +(C4Shape *)pointAt:(CGPoint)origin;
 +(C4Shape *)arcWithCenter:(CGPoint)center radius:(CGFloat)radius startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle clockwise:(BOOL)clockwise;
 +(C4Shape *)pieSliceWithCenter:(CGPoint)center radius:(CGFloat)radius startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle clockwise:(BOOL)clockwise;
+-(void)addShape:(C4Shape *)newShape;
 
 +(void)setLineDashPhase:(CGFloat)lineDashPhase;
 +(void)setLineWidth:(CGFloat)lineWidth;

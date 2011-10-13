@@ -26,41 +26,29 @@
      */
     
     self.view.userInteractionEnabled = YES;
-    self.view.multipleTouchEnabled = YES;
+    self.view.multipleTouchEnabled = NO;
     self.view.exclusiveTouch = YES;
 
     /* This is how to add taps */
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:canvas action:@selector(test)];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(test)];
     tap.numberOfTapsRequired=2;
     [self.view addGestureRecognizer:tap];
-
+    
     /* --- */
     [self reset];
 }
 
 -(void)reset {    
-    CGPoint position = CGPointMake(16, 16);
-    
-    for(NSString *familyName in [UIFont familyNames]) {
-        for(NSString *fontName in [UIFont fontNamesForFamilyName:familyName]) {
-            C4String *newString = [[C4String alloc] initWithString:fontName];
+    image = [C4Image imageNamed:@"C4LogoiPad-01.png"];
+    [image setPosition:CGPointMake(300, 300)];
+    image.shadowOpacity = 0.7f;
+    image.shadowOffset = CGSizeMake(0.0f, 3.0f);    
+    [canvas addImage:image];
+}
 
-            newString.font = [C4Font fontWithName:fontName size:10.0f];
-
-            C4TextLayer *textLayer = [C4TextLayer layerWithString:newString];
-            textLayer.position = position;
-
-            [canvas addTextLayer:textLayer];
-            position.y += 24.0f;
-            if(position.y > 1000) {
-                position.x += 195.0f;
-                position.y = 16.0f;
-            }
-        }
-    }
-
-
+-(void)test {
+    image.position = CGPointMake(500, 500);
 }
 
 - (void)didReceiveMemoryWarning 
@@ -110,10 +98,10 @@
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [canvas receiveTouchesBegan:touches withEvent:event];
+    for(UITouch *t in touches)
+        image.position = [t locationInView:[t view]];
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    [canvas receiveTouchesMoved:touches withEvent:event];
 }
 @end
