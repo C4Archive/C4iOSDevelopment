@@ -9,6 +9,9 @@
 #ifndef C4iOSDevelopment_C4Imports_h
 #define C4iOSDevelopment_C4Imports_h
 
+#import <math.h>
+
+#import "C4AudioPlayer.h"
 #import "C4Canvas.h"
 #import "C4CanvasController.h"
 #import "C4Color.h"
@@ -16,10 +19,12 @@
 #import "C4Foundation.h"
 #import "C4Image.h"
 #import "C4Layer.h"
+#import "C4Math.h"
 #import "C4Object.h"
 #import "C4Shape.h"
 #import "C4String.h"
 #import "C4TextLayer.h"
+#import "C4Vector.h"
 #import "C4Window.h"
 
 #import "C4GlobalShapeAttributes.h"

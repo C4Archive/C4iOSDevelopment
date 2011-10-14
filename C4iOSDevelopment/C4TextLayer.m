@@ -9,7 +9,7 @@
 #import "C4TextLayer.h"
 
 @implementation C4TextLayer
-@synthesize uiFont;
+@synthesize uiFont, c4String;
 
 +(C4TextLayer *)layerWithString:(id)string {
     CGSize size;
@@ -25,17 +25,7 @@
 +(C4TextLayer *)layerWithString:(C4String *)string andRect:(CGRect)rect {
     C4TextLayer *newLayer = [[C4TextLayer alloc] init];
 
-    C4Font *font = string.font;
-    CGSize size = [string sizeWithFont:font];
-    [newLayer resizeBoundsToRect:CGRectMake(0, 0, size.width, size.height)];
-        
-    newLayer.fontSize = font.fontSize;
-    newLayer.anchorPoint = CGPointZero;
-
-    if(string.backgroundVisible == YES) {
-        newLayer.backgroundColor = [((C4String *)string).backgroundColor cgColor];
-    }
-    newLayer.string = (__bridge NSAttributedString*)[string stringRef];
+    newLayer.c4String = string;
 
     return newLayer;
 }
@@ -66,5 +56,21 @@
     uiFont = newFont;
     self.font =  CTFontCreateWithName((__bridge_retained CFStringRef)uiFont.fontName, uiFont.pointSize, NULL);
     self.fontSize = newFont.pointSize;
+}
+
+-(void)setC4String:(C4String *)_c4String {
+    C4Log(@"..");
+    c4String = _c4String;
+    self.font = self.c4String.font.ctFont;
+    
+    CGSize size = [self.c4String sizeWithFont:self.c4String.font];
+    [self resizeBoundsToRect:CGRectMake(0, 0, size.width, size.height)];
+    
+    self.fontSize = self.c4String.font.fontSize;
+    
+    if(self.c4String.backgroundVisible == YES) {
+        self.backgroundColor = [((C4String *)self.c4String).backgroundColor cgColor];
+    }
+    self.string = (__bridge NSAttributedString*)[self.c4String stringRef];
 }
 @end

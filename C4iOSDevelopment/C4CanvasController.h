@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "C4AudioPlayer.h"
+
 @interface C4CanvasController : UIViewController {
-    C4Image *image;
 }
 -(void)setup;
--(void)reset;
 @property (readwrite,retain) C4Canvas *canvas;
 @end

@@ -20,7 +20,7 @@ static C4GlobalStringAttributes *sharedC4GlobalStringAttributes = nil;
     {
         self.font = [C4Font systemFontOfSize:16.0f];
         
-        self.foregroundColor = [C4Color blueColor];
+        self.foregroundColor = [C4Color blackColor];
         self.foregroundVisible = YES;
         
         self.backgroundColor = [C4Color clearColor];

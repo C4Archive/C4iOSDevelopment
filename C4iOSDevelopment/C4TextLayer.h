@@ -20,5 +20,6 @@
 -(void)fitTextToWidth:(CGFloat)width;
 -(void)fitTextToWidth:(CGFloat)width withMaximumFontSize:(CGFloat)maxFontSize;
 
-@property (readwrite,retain,nonatomic) UIFont* uiFont;
+@property (readwrite, strong, nonatomic) UIFont* uiFont;
+@property (readwrite, strong, nonatomic) C4String *c4String;
 @end

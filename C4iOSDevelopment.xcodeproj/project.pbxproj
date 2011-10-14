@@ -25,6 +25,13 @@
 		ED750C55143FA41100D19FEF /* C4Shape.m in Sources */ = {isa = PBXBuildFile; fileRef = ED750C54143FA41000D19FEF /* C4Shape.m */; };
 		ED750C58143FA43100D19FEF /* C4GlobalShapeAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = ED750C57143FA43100D19FEF /* C4GlobalShapeAttributes.m */; };
 		ED7C56C51444B86700B3C090 /* C4Font.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7C56C41444B86700B3C090 /* C4Font.m */; };
+		ED7C9B6C144756520047B743 /* C4Math.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7C9B6B144756520047B743 /* C4Math.m */; };
+		ED7C9B74144760440047B743 /* C4Vector.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7C9B73144760440047B743 /* C4Vector.m */; };
+		ED7C9B7F14476DF00047B743 /* C4Loop.aif in Resources */ = {isa = PBXBuildFile; fileRef = ED7C9B7E14476DF00047B743 /* C4Loop.aif */; };
+		ED7C9B8214476E1A0047B743 /* C4Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7C9B8114476E190047B743 /* C4Sound.m */; };
+		ED7C9B871447709A0047B743 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED7C9B86144770990047B743 /* AVFoundation.framework */; };
+		ED7C9B89144770AC0047B743 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED7C9B88144770AC0047B743 /* AudioToolbox.framework */; };
+		ED7C9B8F144797670047B743 /* C4AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7C9B8E144797650047B743 /* C4AudioPlayer.m */; };
 		ED9F5B8F143E4ACA00D869B3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9F5B8E143E4ACA00D869B3 /* UIKit.framework */; };
 		ED9F5B91143E4ACA00D869B3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9F5B90143E4ACA00D869B3 /* Foundation.framework */; };
 		ED9F5B93143E4ACA00D869B3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED9F5B92143E4ACA00D869B3 /* CoreGraphics.framework */; };
@@ -80,6 +87,17 @@
 		ED750C57143FA43100D19FEF /* C4GlobalShapeAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4GlobalShapeAttributes.m; sourceTree = "<group>"; };
 		ED7C56C31444B86700B3C090 /* C4Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4Font.h; sourceTree = "<group>"; };
 		ED7C56C41444B86700B3C090 /* C4Font.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4Font.m; sourceTree = "<group>"; };
+		ED7C9B6A144756520047B743 /* C4Math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4Math.h; sourceTree = "<group>"; };
+		ED7C9B6B144756520047B743 /* C4Math.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4Math.m; sourceTree = "<group>"; };
+		ED7C9B72144760440047B743 /* C4Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4Vector.h; sourceTree = "<group>"; };
+		ED7C9B73144760440047B743 /* C4Vector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4Vector.m; sourceTree = "<group>"; };
+		ED7C9B7E14476DF00047B743 /* C4Loop.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = C4Loop.aif; sourceTree = "<group>"; };
+		ED7C9B8014476E190047B743 /* C4Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4Sound.h; sourceTree = "<group>"; };
+		ED7C9B8114476E190047B743 /* C4Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4Sound.m; sourceTree = "<group>"; };
+		ED7C9B86144770990047B743 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		ED7C9B88144770AC0047B743 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		ED7C9B8D144797640047B743 /* C4AudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4AudioPlayer.h; sourceTree = "<group>"; };
+		ED7C9B8E144797650047B743 /* C4AudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4AudioPlayer.m; sourceTree = "<group>"; };
 		ED9F5B8A143E4ACA00D869B3 /* C4iOSDevelopment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = C4iOSDevelopment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED9F5B8E143E4ACA00D869B3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		ED9F5B90143E4ACA00D869B3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -113,6 +131,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED7C9B89144770AC0047B743 /* AudioToolbox.framework in Frameworks */,
+				ED7C9B871447709A0047B743 /* AVFoundation.framework in Frameworks */,
 				ED6E43EC1446507B0092B047 /* CoreImage.framework in Frameworks */,
 				ED6E43DE1446243C0092B047 /* Accelerate.framework in Frameworks */,
 				EDA19C5A1442ADB1007C6ACE /* CoreText.framework in Frameworks */,
@@ -144,6 +164,8 @@
 		ED1B7B941445F4EE00FA0B2C /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				ED7C9B8D144797640047B743 /* C4AudioPlayer.h */,
+				ED7C9B8E144797650047B743 /* C4AudioPlayer.m */,
 				ED750C46143F9E6F00D19FEF /* C4Canvas.h */,
 				ED750C47143F9E6F00D19FEF /* C4Canvas.m */,
 				ED750C50143FA16600D19FEF /* C4Color.h */,
@@ -162,14 +184,20 @@
 				ED6E43E514464BAE0092B047 /* C4Image.m */,
 				ED750C41143F9E1700D19FEF /* C4Layer.h */,
 				ED750C42143F9E1700D19FEF /* C4Layer.m */,
+				ED7C9B6A144756520047B743 /* C4Math.h */,
+				ED7C9B6B144756520047B743 /* C4Math.m */,
 				ED750C4D143FA10700D19FEF /* C4Object.h */,
 				ED750C4E143FA10700D19FEF /* C4Object.m */,
 				ED750C53143FA41000D19FEF /* C4Shape.h */,
 				ED750C54143FA41000D19FEF /* C4Shape.m */,
+				ED7C9B8014476E190047B743 /* C4Sound.h */,
+				ED7C9B8114476E190047B743 /* C4Sound.m */,
 				ED3AF1551443EC74007DB652 /* C4String.h */,
 				ED3AF1561443EC74007DB652 /* C4String.m */,
 				ED2516EC14439265005D5A7D /* C4TextLayer.h */,
 				ED2516ED14439265005D5A7D /* C4TextLayer.m */,
+				ED7C9B72144760440047B743 /* C4Vector.h */,
+				ED7C9B73144760440047B743 /* C4Vector.m */,
 				ED21FEA31441538300A7ED16 /* UITouch+C4Touch.h */,
 				ED21FEA41441538300A7ED16 /* UITouch+C4Touch.m */,
 			);
@@ -196,6 +224,8 @@
 		ED9F5B8D143E4ACA00D869B3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ED7C9B88144770AC0047B743 /* AudioToolbox.framework */,
+				ED7C9B86144770990047B743 /* AVFoundation.framework */,
 				ED6E43DD1446243C0092B047 /* Accelerate.framework */,
 				ED6E43EB1446507B0092B047 /* CoreImage.framework */,
 				EDA19C591442ADB1007C6ACE /* CoreText.framework */,
@@ -221,6 +251,7 @@
 		ED9F5B95143E4ACA00D869B3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ED7C9B7E14476DF00047B743 /* C4Loop.aif */,
 				ED9F5BBF143E5F7F00D869B3 /* C4LogoiPad-01.png */,
 				ED9F5BC0143E5F7F00D869B3 /* C4LogoiPad-02.png */,
 				ED9F5BC1143E5F7F00D869B3 /* C4LogoiPad-03.png */,
@@ -302,6 +333,7 @@
 				ED9F5BD0143E5F7F00D869B3 /* C4LogoiPad-08.png in Resources */,
 				ED2517011443D68D005D5A7D /* C4LogoiPad-Landscape.png in Resources */,
 				ED2517021443D68D005D5A7D /* C4LogoiPad-Portrait.png in Resources */,
+				ED7C9B7F14476DF00047B743 /* C4Loop.aif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +362,10 @@
 				ED3AF1571443EC74007DB652 /* C4String.m in Sources */,
 				ED7C56C51444B86700B3C090 /* C4Font.m in Sources */,
 				ED6E43E614464BAE0092B047 /* C4Image.m in Sources */,
+				ED7C9B6C144756520047B743 /* C4Math.m in Sources */,
+				ED7C9B74144760440047B743 /* C4Vector.m in Sources */,
+				ED7C9B8214476E1A0047B743 /* C4Sound.m in Sources */,
+				ED7C9B8F144797670047B743 /* C4AudioPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
