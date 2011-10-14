@@ -59,7 +59,6 @@
 }
 
 -(void)setC4String:(C4String *)_c4String {
-    C4Log(@"..");
     c4String = _c4String;
     self.font = self.c4String.font.ctFont;
     

@@ -11,7 +11,7 @@
 #define INFINITE -1
 C4AudioPlayer *audioPlayer;
 C4TextLayer *playerStateLayer;
-
+C4String *playing, *paused, *stopped;
 @implementation C4CanvasController
 
 @synthesize canvas;
@@ -32,31 +32,32 @@ C4TextLayer *playerStateLayer;
     tap3.numberOfTouchesRequired = 3;
     [self.view addGestureRecognizer:tap3];
     
-    C4String *temp = [C4String stringWithString:@"stopped"];
-    temp.font = [C4Font fontWithName:@"Futura" size:30.0f];
-    playerStateLayer = [C4TextLayer layerWithString:temp];
+    [C4GlobalStringAttributes sharedManager].font = [C4Font fontWithName:@"Futura" size:30.0f];
+
+    playing = [C4String stringWithString:@"playing"];
+    paused = [C4String stringWithString:@"paused"];
+    stopped = [C4String stringWithString:@"stopped"];
+  
+    playerStateLayer = [C4TextLayer layerWithString:stopped];
     playerStateLayer.position = CGPointMake(100, 100);
     [canvas addTextLayer:playerStateLayer];
 }
 
 -(void)singleTap:(id)sender {
     [audioPlayer play];
-    C4String *temp = [C4String stringWithString:@"playing"];
-    playerStateLayer.string = temp;
+    playerStateLayer.c4String = playing;
     playerStateLayer.position = CGPointMake(100, 100);
 }
 
 -(void)doubleTap:(id)sender {
     [audioPlayer stop];
-    C4String *temp = [C4String stringWithString:@"stopped"];
-    playerStateLayer.string = temp;
+    playerStateLayer.c4String = stopped;
     playerStateLayer.position = CGPointMake(100, 100);
 }
 
 -(void)tripleTap:(id)sender {
     [audioPlayer pause];
-    C4String *temp = [C4String stringWithString:@"paused"];
-    playerStateLayer.string = temp;
+    playerStateLayer.c4String = paused;
     playerStateLayer.position = CGPointMake(100, 100);
 }
 
