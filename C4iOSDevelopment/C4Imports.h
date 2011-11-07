@@ -15,6 +15,7 @@
 #import "C4Canvas.h"
 #import "C4CanvasController.h"
 #import "C4Color.h"
+#import "C4DateTime.h"
 #import "C4Font.h"
 #import "C4Foundation.h"
 #import "C4Image.h"

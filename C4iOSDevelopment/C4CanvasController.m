@@ -12,6 +12,7 @@
 C4AudioPlayer *audioPlayer;
 C4TextLayer *playerStateLayer;
 C4String *playing, *paused, *stopped;
+
 @implementation C4CanvasController
 
 @synthesize canvas;
@@ -34,7 +35,7 @@ C4String *playing, *paused, *stopped;
     
     [C4GlobalStringAttributes sharedManager].font = [C4Font fontWithName:@"Futura" size:30.0f];
 
-    playing = [C4String stringWithString:@"playing"];
+    playing = [C4String stringWithString:[C4DateTime hourString]];
     paused = [C4String stringWithString:@"paused"];
     stopped = [C4String stringWithString:@"stopped"];
   

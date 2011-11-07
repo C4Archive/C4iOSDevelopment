@@ -8,6 +8,14 @@
 
 #import "C4Foundation.h"
 
+static C4Foundation *sharedC4Foundation = nil;
+
+@interface C4Foundation (private)
+NSInteger numSort(id num1, id num2, void *context);
+NSInteger strSort(id str1, id str2, void *context);
+NSInteger floatSort(id obj1, id obj2, void *context);	
+@end
+
 @implementation C4Foundation
 
 - (id)init
@@ -17,16 +25,29 @@
 #ifdef VERBOSE
         C4Log(@"%@ init",[self class]);
 #endif
+        floatSortComparator = ^(id obj1, id obj2) {
+            float flt1 = [obj1 floatValue];
+            float flt2 = [obj2 floatValue];
+            if (flt1 < flt2)
+                return NSOrderedAscending;
+            else if (flt1 > flt2)
+                return NSOrderedDescending;
+            else
+                return NSOrderedSame;
+        };
     }
     
     return self;
 }
 
-+(C4Foundation *)sharedClass {
-    static dispatch_once_t once;
-    static C4Foundation *myClass;
-    dispatch_once(&once, ^ { myClass = [[self alloc] init]; });
-    return myClass;
++(C4Foundation *)sharedManager {
+    if (sharedC4Foundation == nil) {
+        static dispatch_once_t once;
+        dispatch_once(&once, ^ { sharedC4Foundation = [[super allocWithZone:NULL] init]; 
+        });
+        return sharedC4Foundation;
+    }
+    return sharedC4Foundation;
 }
 
 void C4Log(NSString *logString,...) {
@@ -39,4 +60,61 @@ void C4Log(NSString *logString,...) {
 	fprintf(stderr,"[C4Log] %s",[finalString UTF8String]);
 }
 
+NSInteger basicSort(id obj1, id obj2, void *context) {
+	if([obj1 class] == [NSNumber class]){
+		return numSort(obj1, obj2, context);
+	}
+	
+	if([obj1 class] == [@"" class] || [obj1 class] == [NSString class]){
+		return strSort(obj1, obj2, context);
+	}
+	return floatSort(obj1, obj2, context);
+}
+
+NSInteger numSort(id num1, id num2, void *context) {
+	return [num1 compare:num2];
+}
+
+NSInteger strSort(id str1, id str2, void *context) {
+	return [str1 localizedStandardCompare:str2];
+}
+
+NSInteger floatSort(id obj1, id obj2, void *context) {
+	float flt1 = [obj1 floatValue];
+	float flt2 = [obj2 floatValue];
+	if (flt1 < flt2)
+        return NSOrderedAscending;
+    else if (flt1 > flt2)
+        return NSOrderedDescending;
+    else
+        return NSOrderedSame;
+}
+
+-(NSComparator) floatComparator {
+    return floatSortComparator;
+}
++(NSComparator) floatComparator {
+    return [[self sharedManager] floatComparator];
+}
+
+void
+free_data(void       *info,		/* I - Context pointer (unused) */
+          const void *data,		/* I - Pointer to data */
+          size_t     size)		/* I - Size of data buffer (unused) */
+{
+    (void)info;
+    (void)size;
+    
+    free((void *)data);
+}
+
++ (id)allocWithZone:(NSZone *)zone
+{
+    return [self sharedManager];
+}
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    return self;
+}
 @end

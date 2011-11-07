@@ -51,6 +51,7 @@
 		EDA19C551442AC18007C6ACE /* C4GlobalStringAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA19C541442AC18007C6ACE /* C4GlobalStringAttributes.m */; };
 		EDA19C581442ACAA007C6ACE /* C4GlobalTypeAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA19C571442ACAA007C6ACE /* C4GlobalTypeAttributes.m */; };
 		EDA19C5A1442ADB1007C6ACE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA19C591442ADB1007C6ACE /* CoreText.framework */; };
+		EDBB528314683EC700F9711B /* C4DateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBB528214683EC700F9711B /* C4DateTime.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,6 +125,8 @@
 		EDA19C561442ACAA007C6ACE /* C4GlobalTypeAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4GlobalTypeAttributes.h; sourceTree = "<group>"; };
 		EDA19C571442ACAA007C6ACE /* C4GlobalTypeAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4GlobalTypeAttributes.m; sourceTree = "<group>"; };
 		EDA19C591442ADB1007C6ACE /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		EDBB528114683EC700F9711B /* C4DateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4DateTime.h; sourceTree = "<group>"; };
+		EDBB528214683EC700F9711B /* C4DateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4DateTime.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +173,8 @@
 				ED750C47143F9E6F00D19FEF /* C4Canvas.m */,
 				ED750C50143FA16600D19FEF /* C4Color.h */,
 				ED750C51143FA16600D19FEF /* C4Color.m */,
+				EDBB528114683EC700F9711B /* C4DateTime.h */,
+				EDBB528214683EC700F9711B /* C4DateTime.m */,
 				ED7C56C31444B86700B3C090 /* C4Font.h */,
 				ED7C56C41444B86700B3C090 /* C4Font.m */,
 				ED750C4A143FA09500D19FEF /* C4Foundation.h */,
@@ -366,6 +371,7 @@
 				ED7C9B74144760440047B743 /* C4Vector.m in Sources */,
 				ED7C9B8214476E1A0047B743 /* C4Sound.m in Sources */,
 				ED7C9B8F144797670047B743 /* C4AudioPlayer.m in Sources */,
+				EDBB528314683EC700F9711B /* C4DateTime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
