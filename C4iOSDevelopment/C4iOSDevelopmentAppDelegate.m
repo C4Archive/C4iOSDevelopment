@@ -23,9 +23,9 @@
 
     self.canvasController = [[C4CanvasController alloc] initWithNibName:@"C4CanvasController" bundle:nil];
     self.window.rootViewController = self.canvasController;
-
+    
     self.canvasController.canvas = (C4Canvas *)self.window.layer;
-
+    
     [self.window makeKeyAndVisible];
     [[AVAudioSession sharedInstance] setDelegate:self.canvasController];
     [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategorySoloAmbient error: nil];

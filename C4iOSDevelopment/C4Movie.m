@@ -26,6 +26,7 @@
     self = [super init];
     if(self != nil) {
         videoPlayerView = [[C4VideoPlayerView alloc] initWithFrame:movieFrame];
+        videoPlayerView.userInteractionEnabled = NO;
         
         NSArray *movieNameComponents = [movieName componentsSeparatedByString:@"."];
         movieURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:[movieNameComponents objectAtIndex:0]
@@ -87,7 +88,6 @@
 		AVKeyValueStatus keyStatus = [asset statusOfValueForKey:thisKey error:&error];
 		if (keyStatus == AVKeyValueStatusFailed)
 		{
-            C4Log(@"assetFailedToPrepareForPlayback");
 			[self assetFailedToPrepareForPlayback:error];
 			return;
 		}
@@ -147,7 +147,7 @@
     {
         /* Get a new AVPlayer initialized to play the specified player item. */
         [self setPlayer:[AVPlayer playerWithPlayerItem:self.playerItem]];	
-		
+		player.actionAtItemEnd = AVPlayerActionAtItemEndNone;
         /* Observe the AVPlayer "currentItem" property to find out when any 
          AVPlayer replaceCurrentItemWithPlayerItem: replacement will/did 
          occur.*/
@@ -163,7 +163,7 @@
         /* Replace the player item with a new player item. The item replacement occurs 
          asynchronously; observe the currentItem property to find out when the 
          replacement will/did occur*/
-        C4Log(@"replaceCurrentItemWithPlayerItem");
+//        C4Log(@"replaceCurrentItemWithPlayerItem");
         [[self player] replaceCurrentItemWithPlayerItem:self.playerItem];
     }
 }
@@ -183,7 +183,7 @@
                 /* Indicates that the status of the player is not yet known because 
                  it has not tried to load new media resources for playback */
             case AVPlayerStatusUnknown:
-                C4Log(@"AVPlayerStatusUnknown");
+//                C4Log(@"AVPlayerStatusUnknown");
                 break;
                 
             case AVPlayerStatusReadyToPlay:
@@ -191,14 +191,13 @@
                 /* Once the AVPlayerItem becomes ready to play, i.e. 
                  [playerItem status] == AVPlayerItemStatusReadyToPlay,
                  its duration can be fetched from the item. */
-                C4Log(@"AVPlayerStatusReadyToPlay");
+//                C4Log(@"AVPlayerStatusReadyToPlay");
                 videoPlayerView.playerLayer.hidden = NO;
                 videoPlayerView.playerLayer.backgroundColor = [[UIColor clearColor] CGColor];
                 
                 /* Set the AVPlayerLayer on the view to allow the AVPlayer object to display
                  its content. */	
                 [videoPlayerView.playerLayer setPlayer:player];
-                [self play];
             }
                 break;
                 
@@ -217,7 +216,7 @@
 	else if (context == currentItemContext)
 	{
         AVPlayerItem *newPlayerItem = [change objectForKey:NSKeyValueChangeNewKey];
-        C4Log(@"currentItemContext");
+//        C4Log(@"currentItemContext");
         
         /* New player item null? */
         if (newPlayerItem == (id)[NSNull null])
@@ -235,7 +234,6 @@
 	}
 	else
 	{
-        C4Log(@"else");
 		[super observeValueForKeyPath:path ofObject:object change:change context:context];
 	}
     
@@ -244,8 +242,8 @@
 
 - (void) playerItemDidReachEnd:(NSNotification*) aNotification 
 {
-    C4Log(@"end");
     [playerItem seekToTime:kCMTimeZero];
+    [player play];
 }
 
 - (void)play {
@@ -286,5 +284,15 @@
 
 -(void)seekToTime:(CMTime)newTime {
     [player seekToTime:newTime];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:AVPlayerItemDidPlayToEndTimeNotification
+                                                  object:nil];
+    
+    [self.player removeObserver:self forKeyPath:@"currentItem"];
+    [self.player removeObserver:self forKeyPath:@"status"];
 }
 @end

@@ -193,7 +193,6 @@
                 /* Set the AVPlayerLayer on the view to allow the AVPlayer object to display
                  its content. */	
                 [videoPlayerView.playerLayer setPlayer:player];
-                [self play];
             }
                 break;
                 
@@ -239,7 +238,7 @@
 
 - (void) playerItemDidReachEnd:(NSNotification*) aNotification 
 {
-    C4Log(@"end");
+    [player pause];
     [playerItem seekToTime:kCMTimeZero];
 }
 

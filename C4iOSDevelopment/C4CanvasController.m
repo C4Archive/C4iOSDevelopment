@@ -10,23 +10,32 @@
 #import "C4Movie.h"
 
 @interface C4CanvasController()
-@property (readwrite, strong) C4Movie *inceptionMovie;
+@property (readwrite, strong) C4Movie *movieA, *movieB, *movieC;
 -(void)pan:(id)sender;
 -(void)togglePlayback:(id)sender;
 -(void)resetPlayhead:(id)sender;
+-(void)seekTimes:(id)sender;
 -(void)addMovie:(C4Movie *)newMovie;
 @end
 
 @implementation C4CanvasController
 
-@synthesize canvas, inceptionMovie;
+@synthesize canvas, movieA, movieB, movieC;
 
 -(void)setup {
-    self.inceptionMovie = [[C4Movie alloc] initWithMovieName:@"inception.m4v"
-                                                    andFrame:CGRectMake(100, 100, 320, 200)];
-    [self addMovie:inceptionMovie];
-    [self.inceptionMovie play];
+    canvas.backgroundColor = [[UIColor blackColor] CGColor];
     
+    self.movieA = [[C4Movie alloc] initWithMovieName:@"inception.m4v"
+                                            andFrame:CGRectMake(0, 0, 768, 341)];
+    self.movieB = [[C4Movie alloc] initWithMovieName:@"inception.m4v"
+                                            andFrame:CGRectMake(0, 341, 768, 341)];
+    self.movieC = [[C4Movie alloc] initWithMovieName:@"inception.m4v"
+                                            andFrame:CGRectMake(0, 682, 768, 341)];
+    
+    [self addMovie:movieA];
+    [self addMovie:movieB];
+    [self addMovie:movieC];
+     
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
     pan.minimumNumberOfTouches = 1;
     pan.maximumNumberOfTouches = 1;
@@ -41,22 +50,42 @@
     doubleTap.numberOfTapsRequired = 1;
     doubleTap.numberOfTouchesRequired = 2;
     [self.view addGestureRecognizer:doubleTap];
+
+    UITapGestureRecognizer *tripleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(seekTimes:)];
+    tripleTap.numberOfTapsRequired = 1;
+    tripleTap.numberOfTouchesRequired = 3;
+    [self.view addGestureRecognizer:tripleTap];
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self togglePlayback:nil];
+    [self seekTimes:nil];
 }
 
 -(void)pan:(id)sender {
-    inceptionMovie.position = [sender locationInView:self.view];
 }
 
 -(void)togglePlayback:(id)sender {
-    if(inceptionMovie.rate > 0.){
-        [inceptionMovie pause];
+    if(movieA.rate > 0.){
+        [self.movieA pause];
+        [self.movieB pause];
+        [self.movieC pause];
     } else {
-        [inceptionMovie play];
+        [self.movieA play];
+        [self.movieB play];
+        [self.movieC play];
     }
 }
 
 -(void)resetPlayhead:(id)sender {
-    [inceptionMovie seekToTime:kCMTimeZero];
+}
+
+-(void)seekTimes:(id)sender {
+    [self.movieA seekToTime:CMTimeMakeWithSeconds(0, 1)];
+    [self.movieB seekToTime:CMTimeMakeWithSeconds(2, 1)];
+    [self.movieC seekToTime:CMTimeMakeWithSeconds(4, 1)];
 }
 
 -(void)addMovie:(C4Movie *)newMovie {
