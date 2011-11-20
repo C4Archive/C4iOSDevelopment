@@ -12,6 +12,8 @@
 		ED2517011443D68D005D5A7D /* C4LogoiPad-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = ED2516FF1443D68C005D5A7D /* C4LogoiPad-Landscape.png */; };
 		ED2517021443D68D005D5A7D /* C4LogoiPad-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = ED2517001443D68D005D5A7D /* C4LogoiPad-Portrait.png */; };
 		ED3AF1571443EC74007DB652 /* C4String.m in Sources */ = {isa = PBXBuildFile; fileRef = ED3AF1561443EC74007DB652 /* C4String.m */; };
+		ED5E4AC31468B17E0065E77B /* inception.m4v in Resources */ = {isa = PBXBuildFile; fileRef = ED5E4AC21468B17E0065E77B /* inception.m4v */; };
+		ED5E4AC61468B3BF0065E77B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED5E4AC51468B3BF0065E77B /* CoreMedia.framework */; };
 		ED6E43DE1446243C0092B047 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED6E43DD1446243C0092B047 /* Accelerate.framework */; };
 		ED6E43E614464BAE0092B047 /* C4Image.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6E43E514464BAE0092B047 /* C4Image.m */; };
 		ED6E43EC1446507B0092B047 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED6E43EB1446507B0092B047 /* CoreImage.framework */; };
@@ -52,6 +54,10 @@
 		EDA19C581442ACAA007C6ACE /* C4GlobalTypeAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA19C571442ACAA007C6ACE /* C4GlobalTypeAttributes.m */; };
 		EDA19C5A1442ADB1007C6ACE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA19C591442ADB1007C6ACE /* CoreText.framework */; };
 		EDBB528314683EC700F9711B /* C4DateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBB528214683EC700F9711B /* C4DateTime.m */; };
+		EDFAB50C147870F800FAB075 /* C4Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = EDFAB50B147870F800FAB075 /* C4Movie.m */; };
+		EDFAB5181478D87900FAB075 /* C4VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EDFAB5171478D87900FAB075 /* C4VideoPlayer.m */; };
+		EDFAB51C1478D8CA00FAB075 /* C4VideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDFAB51B1478D8CA00FAB075 /* C4VideoPlayerController.m */; };
+		EDFAB51F1478D8E600FAB075 /* C4VideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EDFAB51E1478D8E600FAB075 /* C4VideoPlayerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +70,8 @@
 		ED2517001443D68D005D5A7D /* C4LogoiPad-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "C4LogoiPad-Portrait.png"; sourceTree = "<group>"; };
 		ED3AF1551443EC74007DB652 /* C4String.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4String.h; sourceTree = "<group>"; };
 		ED3AF1561443EC74007DB652 /* C4String.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4String.m; sourceTree = "<group>"; };
+		ED5E4AC21468B17E0065E77B /* inception.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = inception.m4v; sourceTree = "<group>"; };
+		ED5E4AC51468B3BF0065E77B /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		ED6E43DD1446243C0092B047 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		ED6E43E414464BAE0092B047 /* C4Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4Image.h; sourceTree = "<group>"; };
 		ED6E43E514464BAE0092B047 /* C4Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4Image.m; sourceTree = "<group>"; };
@@ -127,6 +135,14 @@
 		EDA19C591442ADB1007C6ACE /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		EDBB528114683EC700F9711B /* C4DateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4DateTime.h; sourceTree = "<group>"; };
 		EDBB528214683EC700F9711B /* C4DateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4DateTime.m; sourceTree = "<group>"; };
+		EDFAB50A147870F800FAB075 /* C4Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4Movie.h; sourceTree = "<group>"; };
+		EDFAB50B147870F800FAB075 /* C4Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4Movie.m; sourceTree = "<group>"; };
+		EDFAB5161478D87900FAB075 /* C4VideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4VideoPlayer.h; sourceTree = "<group>"; };
+		EDFAB5171478D87900FAB075 /* C4VideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4VideoPlayer.m; sourceTree = "<group>"; };
+		EDFAB51A1478D8CA00FAB075 /* C4VideoPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4VideoPlayerController.h; sourceTree = "<group>"; };
+		EDFAB51B1478D8CA00FAB075 /* C4VideoPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4VideoPlayerController.m; sourceTree = "<group>"; };
+		EDFAB51D1478D8E600FAB075 /* C4VideoPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4VideoPlayerView.h; sourceTree = "<group>"; };
+		EDFAB51E1478D8E600FAB075 /* C4VideoPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4VideoPlayerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +150,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED5E4AC61468B3BF0065E77B /* CoreMedia.framework in Frameworks */,
 				ED7C9B89144770AC0047B743 /* AudioToolbox.framework in Frameworks */,
 				ED7C9B871447709A0047B743 /* AVFoundation.framework in Frameworks */,
 				ED6E43EC1446507B0092B047 /* CoreImage.framework in Frameworks */,
@@ -191,6 +208,14 @@
 				ED750C42143F9E1700D19FEF /* C4Layer.m */,
 				ED7C9B6A144756520047B743 /* C4Math.h */,
 				ED7C9B6B144756520047B743 /* C4Math.m */,
+				EDFAB5161478D87900FAB075 /* C4VideoPlayer.h */,
+				EDFAB5171478D87900FAB075 /* C4VideoPlayer.m */,
+				EDFAB51A1478D8CA00FAB075 /* C4VideoPlayerController.h */,
+				EDFAB51B1478D8CA00FAB075 /* C4VideoPlayerController.m */,
+				EDFAB51D1478D8E600FAB075 /* C4VideoPlayerView.h */,
+				EDFAB51E1478D8E600FAB075 /* C4VideoPlayerView.m */,
+				EDFAB50A147870F800FAB075 /* C4Movie.h */,
+				EDFAB50B147870F800FAB075 /* C4Movie.m */,
 				ED750C4D143FA10700D19FEF /* C4Object.h */,
 				ED750C4E143FA10700D19FEF /* C4Object.m */,
 				ED750C53143FA41000D19FEF /* C4Shape.h */,
@@ -229,6 +254,7 @@
 		ED9F5B8D143E4ACA00D869B3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ED5E4AC51468B3BF0065E77B /* CoreMedia.framework */,
 				ED7C9B88144770AC0047B743 /* AudioToolbox.framework */,
 				ED7C9B86144770990047B743 /* AVFoundation.framework */,
 				ED6E43DD1446243C0092B047 /* Accelerate.framework */,
@@ -256,6 +282,7 @@
 		ED9F5B95143E4ACA00D869B3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ED5E4AC21468B17E0065E77B /* inception.m4v */,
 				ED7C9B7E14476DF00047B743 /* C4Loop.aif */,
 				ED9F5BBF143E5F7F00D869B3 /* C4LogoiPad-01.png */,
 				ED9F5BC0143E5F7F00D869B3 /* C4LogoiPad-02.png */,
@@ -339,6 +366,7 @@
 				ED2517011443D68D005D5A7D /* C4LogoiPad-Landscape.png in Resources */,
 				ED2517021443D68D005D5A7D /* C4LogoiPad-Portrait.png in Resources */,
 				ED7C9B7F14476DF00047B743 /* C4Loop.aif in Resources */,
+				ED5E4AC31468B17E0065E77B /* inception.m4v in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +400,10 @@
 				ED7C9B8214476E1A0047B743 /* C4Sound.m in Sources */,
 				ED7C9B8F144797670047B743 /* C4AudioPlayer.m in Sources */,
 				EDBB528314683EC700F9711B /* C4DateTime.m in Sources */,
+				EDFAB50C147870F800FAB075 /* C4Movie.m in Sources */,
+				EDFAB5181478D87900FAB075 /* C4VideoPlayer.m in Sources */,
+				EDFAB51C1478D8CA00FAB075 /* C4VideoPlayerController.m in Sources */,
+				EDFAB51F1478D8E600FAB075 /* C4VideoPlayerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

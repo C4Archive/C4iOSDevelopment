@@ -14,6 +14,7 @@
 
 @synthesize window = _window;
 @synthesize canvasController = _canvasController;
+@synthesize inceptionMovieController = _inceptionMovieController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -26,7 +27,10 @@
     self.canvasController.canvas = (C4Canvas *)self.window.layer;
 
     [self.window makeKeyAndVisible];
+    [[AVAudioSession sharedInstance] setDelegate:self.canvasController];
+    [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategorySoloAmbient error: nil];
     [self.canvasController setup];
+    
     return YES;
 }
 

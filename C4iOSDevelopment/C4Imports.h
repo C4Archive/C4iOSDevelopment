@@ -21,6 +21,7 @@
 #import "C4Image.h"
 #import "C4Layer.h"
 #import "C4Math.h"
+#import "C4Movie.h"
 #import "C4Object.h"
 #import "C4Shape.h"
 #import "C4String.h"

@@ -7,59 +7,58 @@
 //
 
 #import "C4CanvasController.h"
+#import "C4VideoPlayerController.h"
+#import "C4VideoPlayerView.h"
 
-#define INFINITE -1
-C4AudioPlayer *audioPlayer;
-C4TextLayer *playerStateLayer;
-C4String *playing, *paused, *stopped;
+@interface C4CanvasController()
+@property (readwrite, strong) C4VideoPlayerController *inceptionMovieController;
+-(void)pan:(id)sender;
+-(void)togglePlayback:(id)sender;
+-(void)resetPlayhead:(id)sender;
+@end
 
 @implementation C4CanvasController
 
-@synthesize canvas;
+@synthesize canvas, inceptionMovieController;
 
 -(void)setup {
-    audioPlayer = [[C4AudioPlayer alloc] initWithFileNamed:@"C4Loop.aif"];
-    audioPlayer.numberOfLoops = INFINITE;
-
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)];
-    tap.numberOfTapsRequired = 1;
-    [self.view addGestureRecognizer:tap];
+    self.inceptionMovieController = [[C4VideoPlayerController alloc] init];
+    [self.inceptionMovieController loadMovieWithName:@"inception.m4v"];
+    [self.inceptionMovieController setMovieFrame:CGRectMake(100, 100, 320, 200)];
+//    [self.view addSubview:self.inceptionMovieController.videoPlayerView];
+    [canvas addSublayer:self.inceptionMovieController.videoPlayerView.playerLayer];
+    [self.inceptionMovieController play];
     
-    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
-    tap2.numberOfTouchesRequired = 2;
-    [self.view addGestureRecognizer:tap2];
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+    pan.minimumNumberOfTouches = 1;
+    pan.maximumNumberOfTouches = 1;
+    [self.view addGestureRecognizer:pan];
     
-    UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tripleTap:)];
-    tap3.numberOfTouchesRequired = 3;
-    [self.view addGestureRecognizer:tap3];
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(togglePlayback:)];
+    singleTap.numberOfTapsRequired = 1;
+    singleTap.numberOfTouchesRequired = 1;
+    [self.view addGestureRecognizer:singleTap];
     
-    [C4GlobalStringAttributes sharedManager].font = [C4Font fontWithName:@"Futura" size:30.0f];
-
-    playing = [C4String stringWithString:[C4DateTime hourString]];
-    paused = [C4String stringWithString:@"paused"];
-    stopped = [C4String stringWithString:@"stopped"];
-  
-    playerStateLayer = [C4TextLayer layerWithString:stopped];
-    playerStateLayer.position = CGPointMake(100, 100);
-    [canvas addTextLayer:playerStateLayer];
+    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resetPlayhead:)];
+    doubleTap.numberOfTapsRequired = 1;
+    doubleTap.numberOfTouchesRequired = 2;
+    [self.view addGestureRecognizer:doubleTap];
 }
 
--(void)singleTap:(id)sender {
-    [audioPlayer play];
-    playerStateLayer.c4String = playing;
-    playerStateLayer.position = CGPointMake(100, 100);
+-(void)pan:(id)sender {
+    self.inceptionMovieController.videoPlayerView.playerLayer.position = [sender locationInView:self.view];
 }
 
--(void)doubleTap:(id)sender {
-    [audioPlayer stop];
-    playerStateLayer.c4String = stopped;
-    playerStateLayer.position = CGPointMake(100, 100);
+-(void)togglePlayback:(id)sender {
+    if([inceptionMovieController.player rate] > 0.f){
+        [inceptionMovieController pause];
+    } else {
+        [inceptionMovieController play];
+    }
 }
 
--(void)tripleTap:(id)sender {
-    [audioPlayer pause];
-    playerStateLayer.c4String = paused;
-    playerStateLayer.position = CGPointMake(100, 100);
+-(void)resetPlayhead:(id)sender {
+    [inceptionMovieController.player seekToTime:kCMTimeZero];
 }
 
 @end

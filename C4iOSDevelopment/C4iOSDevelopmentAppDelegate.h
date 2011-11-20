@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "C4VideoPlayerController.h"
+#import "C4VideoPlayerView.h"
 
 @class C4CanvasController;
 
@@ -15,6 +17,6 @@
 
 @property (strong, nonatomic) IBOutlet C4Window *window;
 
-@property (strong, nonatomic, retain) C4CanvasController *canvasController;
-
+@property (strong, nonatomic) C4CanvasController *canvasController;
+@property (strong, nonatomic) C4VideoPlayerController *inceptionMovieController;
 @end

@@ -9,7 +9,7 @@
 #import "C4AudioPlayer.h"
 
 @implementation C4AudioPlayer
-@synthesize player, currentTime, pan, rate, volume, playing, duration, timestamp, enableRate, numberOfLoops, deviceCurrentTime;
+@synthesize player, currentTime, pan, rate, volume, playing, duration, enableRate, numberOfLoops, deviceCurrentTime;
 
 -(id)initWithFileNamed:(id)_filename {
     self = [super init];
