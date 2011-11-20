@@ -54,10 +54,10 @@
 		EDA19C581442ACAA007C6ACE /* C4GlobalTypeAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA19C571442ACAA007C6ACE /* C4GlobalTypeAttributes.m */; };
 		EDA19C5A1442ADB1007C6ACE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA19C591442ADB1007C6ACE /* CoreText.framework */; };
 		EDBB528314683EC700F9711B /* C4DateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBB528214683EC700F9711B /* C4DateTime.m */; };
-		EDFAB50C147870F800FAB075 /* C4Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = EDFAB50B147870F800FAB075 /* C4Movie.m */; };
 		EDFAB5181478D87900FAB075 /* C4VideoPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EDFAB5171478D87900FAB075 /* C4VideoPlayer.m */; };
 		EDFAB51C1478D8CA00FAB075 /* C4VideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDFAB51B1478D8CA00FAB075 /* C4VideoPlayerController.m */; };
 		EDFAB51F1478D8E600FAB075 /* C4VideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EDFAB51E1478D8E600FAB075 /* C4VideoPlayerView.m */; };
+		EDFAB5331479149500FAB075 /* C4Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = EDFAB5321479149500FAB075 /* C4Movie.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -135,14 +135,14 @@
 		EDA19C591442ADB1007C6ACE /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		EDBB528114683EC700F9711B /* C4DateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4DateTime.h; sourceTree = "<group>"; };
 		EDBB528214683EC700F9711B /* C4DateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4DateTime.m; sourceTree = "<group>"; };
-		EDFAB50A147870F800FAB075 /* C4Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4Movie.h; sourceTree = "<group>"; };
-		EDFAB50B147870F800FAB075 /* C4Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4Movie.m; sourceTree = "<group>"; };
 		EDFAB5161478D87900FAB075 /* C4VideoPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4VideoPlayer.h; sourceTree = "<group>"; };
 		EDFAB5171478D87900FAB075 /* C4VideoPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4VideoPlayer.m; sourceTree = "<group>"; };
 		EDFAB51A1478D8CA00FAB075 /* C4VideoPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4VideoPlayerController.h; sourceTree = "<group>"; };
 		EDFAB51B1478D8CA00FAB075 /* C4VideoPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4VideoPlayerController.m; sourceTree = "<group>"; };
 		EDFAB51D1478D8E600FAB075 /* C4VideoPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4VideoPlayerView.h; sourceTree = "<group>"; };
 		EDFAB51E1478D8E600FAB075 /* C4VideoPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4VideoPlayerView.m; sourceTree = "<group>"; };
+		EDFAB5311479149500FAB075 /* C4Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C4Movie.h; sourceTree = "<group>"; };
+		EDFAB5321479149500FAB075 /* C4Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C4Movie.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,14 +208,14 @@
 				ED750C42143F9E1700D19FEF /* C4Layer.m */,
 				ED7C9B6A144756520047B743 /* C4Math.h */,
 				ED7C9B6B144756520047B743 /* C4Math.m */,
+				EDFAB5311479149500FAB075 /* C4Movie.h */,
+				EDFAB5321479149500FAB075 /* C4Movie.m */,
 				EDFAB5161478D87900FAB075 /* C4VideoPlayer.h */,
 				EDFAB5171478D87900FAB075 /* C4VideoPlayer.m */,
 				EDFAB51A1478D8CA00FAB075 /* C4VideoPlayerController.h */,
 				EDFAB51B1478D8CA00FAB075 /* C4VideoPlayerController.m */,
 				EDFAB51D1478D8E600FAB075 /* C4VideoPlayerView.h */,
 				EDFAB51E1478D8E600FAB075 /* C4VideoPlayerView.m */,
-				EDFAB50A147870F800FAB075 /* C4Movie.h */,
-				EDFAB50B147870F800FAB075 /* C4Movie.m */,
 				ED750C4D143FA10700D19FEF /* C4Object.h */,
 				ED750C4E143FA10700D19FEF /* C4Object.m */,
 				ED750C53143FA41000D19FEF /* C4Shape.h */,
@@ -400,10 +400,10 @@
 				ED7C9B8214476E1A0047B743 /* C4Sound.m in Sources */,
 				ED7C9B8F144797670047B743 /* C4AudioPlayer.m in Sources */,
 				EDBB528314683EC700F9711B /* C4DateTime.m in Sources */,
-				EDFAB50C147870F800FAB075 /* C4Movie.m in Sources */,
 				EDFAB5181478D87900FAB075 /* C4VideoPlayer.m in Sources */,
 				EDFAB51C1478D8CA00FAB075 /* C4VideoPlayerController.m in Sources */,
 				EDFAB51F1478D8E600FAB075 /* C4VideoPlayerView.m in Sources */,
+				EDFAB5331479149500FAB075 /* C4Movie.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,27 +7,25 @@
 //
 
 #import "C4CanvasController.h"
-#import "C4VideoPlayerController.h"
-#import "C4VideoPlayerView.h"
+#import "C4Movie.h"
 
 @interface C4CanvasController()
-@property (readwrite, strong) C4VideoPlayerController *inceptionMovieController;
+@property (readwrite, strong) C4Movie *inceptionMovie;
 -(void)pan:(id)sender;
 -(void)togglePlayback:(id)sender;
 -(void)resetPlayhead:(id)sender;
+-(void)addMovie:(C4Movie *)newMovie;
 @end
 
 @implementation C4CanvasController
 
-@synthesize canvas, inceptionMovieController;
+@synthesize canvas, inceptionMovie;
 
 -(void)setup {
-    self.inceptionMovieController = [[C4VideoPlayerController alloc] init];
-    [self.inceptionMovieController loadMovieWithName:@"inception.m4v"];
-    [self.inceptionMovieController setMovieFrame:CGRectMake(100, 100, 320, 200)];
-//    [self.view addSubview:self.inceptionMovieController.videoPlayerView];
-    [canvas addSublayer:self.inceptionMovieController.videoPlayerView.playerLayer];
-    [self.inceptionMovieController play];
+    self.inceptionMovie = [[C4Movie alloc] initWithMovieName:@"inception.m4v"
+                                                    andFrame:CGRectMake(100, 100, 320, 200)];
+    [self addMovie:inceptionMovie];
+    [self.inceptionMovie play];
     
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
     pan.minimumNumberOfTouches = 1;
@@ -46,19 +44,22 @@
 }
 
 -(void)pan:(id)sender {
-    self.inceptionMovieController.videoPlayerView.playerLayer.position = [sender locationInView:self.view];
+    inceptionMovie.position = [sender locationInView:self.view];
 }
 
 -(void)togglePlayback:(id)sender {
-    if([inceptionMovieController.player rate] > 0.f){
-        [inceptionMovieController pause];
+    if(inceptionMovie.rate > 0.){
+        [inceptionMovie pause];
     } else {
-        [inceptionMovieController play];
+        [inceptionMovie play];
     }
 }
 
 -(void)resetPlayhead:(id)sender {
-    [inceptionMovieController.player seekToTime:kCMTimeZero];
+    [inceptionMovie seekToTime:kCMTimeZero];
 }
 
+-(void)addMovie:(C4Movie *)newMovie {
+    [canvas addSublayer:[newMovie movieLayer]];
+}
 @end

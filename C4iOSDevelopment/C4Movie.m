@@ -2,209 +2,289 @@
 //  C4Movie.m
 //  C4iOSDevelopment
 //
-//  Created by Travis Kirton on 11-11-19.
+//  Created by Travis Kirton on 11-11-20.
 //  Copyright (c) 2011 mediart. All rights reserved.
 //
 
 #import "C4Movie.h"
 
 @interface C4Movie()
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context;
--(void)setUpPlaybackOfAsset:(AVAsset *)asset withKeys:(NSArray *)keys;
--(void)stopAndHideLoadingSpinner;
+- (CMTime)playerItemDuration;
+- (BOOL)isPlaying;
+- (void)assetFailedToPrepareForPlayback:(NSError *)error;
+- (void)prepareToPlayAsset:(AVURLAsset *)asset withKeys:(NSArray *)requestedKeys;
+
+@property (strong) C4VideoPlayerView *videoPlayerView;
+@property (strong) AVPlayer *player;
+@property (strong) AVPlayerItem *playerItem;
 @end
 
 @implementation C4Movie
+@synthesize player, playerItem, rate, videoPlayerView, frame, position;
 
-@synthesize loadingView, movieRect, player, playerLayer;
-@synthesize rate, volume, muted, closedCaptionDisplayEnabled;
-@synthesize timestamp;
-
--(id)initWithName:(NSString *)movieName andRect:(CGRect)rect {
+-(id)initWithMovieName:(NSString *)movieName andFrame:(CGRect)movieFrame {
     self = [super init];
-    if(self) {
+    if(self != nil) {
+        videoPlayerView = [[C4VideoPlayerView alloc] initWithFrame:movieFrame];
         
-        movieStatus = &movieStatus;
-        playbackRate = &playbackRate;
-        readyToDisplay = &readyToDisplay;
-        
-        self.player = [[AVPlayer alloc] init];
-        self.movieRect = rect;
-        
-        // OSX uses CIFilters for changing color, but the following line suffices for iOS
-        self.loadingView = [[UIActivityIndicatorView alloc] 
-                            initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        
-        self.loadingView.frame = movieRect;
-        [self.loadingView sizeToFit];
-        
-        self.loadingView.hidesWhenStopped = YES;
-        [self.loadingView startAnimating];
-                
-        NSArray *movieURLComponents = [movieName componentsSeparatedByString:@"."];
-        NSURL *movieURL = [[NSBundle mainBundle] URLForResource:[movieURLComponents objectAtIndex:0] withExtension:[movieURLComponents objectAtIndex:1]];
-        
-        AVURLAsset *asset = [AVAsset assetWithURL:movieURL];
-        NSArray *assetKeysToLoadAndTest = [NSArray arrayWithObjects:@"playable", @"hasProtectedContent", @"tracks", @"duration", nil];
-        [asset loadValuesAsynchronouslyForKeys:assetKeysToLoadAndTest completionHandler:^(void) {
-            
-            dispatch_async(dispatch_get_main_queue(), ^(void) {
-                [self setUpPlaybackOfAsset:asset withKeys:assetKeysToLoadAndTest];
-            });
-            
-        }];
+        NSArray *movieNameComponents = [movieName componentsSeparatedByString:@"."];
+        movieURL = [[NSURL alloc] initFileURLWithPath:[[NSBundle mainBundle] pathForResource:[movieNameComponents objectAtIndex:0]
+                                                                                      ofType:[movieNameComponents objectAtIndex:1]]];
+        if([movieURL scheme]) {
+            AVURLAsset *asset = [AVURLAsset URLAssetWithURL:movieURL options:nil];
+            NSArray *requestedKeys = [NSArray arrayWithObjects:@"duration", @"playable", nil];
+            [asset loadValuesAsynchronouslyForKeys:requestedKeys completionHandler: ^(void) {		 
+                dispatch_async( dispatch_get_main_queue(), ^(void) {
+                    [self prepareToPlayAsset:asset withKeys:requestedKeys];
+                });
+            }];
+        }
     }
-    
-    [player play];
     return self;
 }
 
-#pragma mark C4Object Methods
--(void)setup {
-    
+-(void)setMovieFrame:(CGRect)newRect {
+    videoPlayerView.frame = newRect;
 }
 
--(void)listenFor:(NSString *)aNotification andRunMethod:(NSString *)aMethodName{
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:NSSelectorFromString(aMethodName) name:aNotification object:nil];
-}
-
--(void)stopListeningFor:(NSString *)aMethodName {
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:aMethodName object:nil];
-}
-
--(void)postNotification:(NSString *)aNotification {
-	[[NSNotificationCenter defaultCenter] postNotificationName:aNotification object:self];
-}
-
--(void)setTimestamp:(NSTimeInterval)_timestamp {
-    if(self.timestamp == 0.0f)
-        self.timestamp = _timestamp;
-}
-
-#pragma mark other methods
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-	if (context == movieStatus)
-	{
-		AVPlayerStatus status = [[change objectForKey:NSKeyValueChangeNewKey] integerValue];
-		BOOL enable = NO;
-		switch (status)
-		{
-			case AVPlayerItemStatusUnknown:
-				break;
-			case AVPlayerItemStatusReadyToPlay:
-				enable = YES;
-				break;
-			case AVPlayerItemStatusFailed:
-				[self stopAndHideLoadingSpinner];
-                NSLog(@"AVPlayerItemStatusFailed");
-				break;
-		}
-        /* options */
-        //if(enable) { /* do stuff */ }
-    }
-	else if (context == readyToDisplay)
-	{
-		if ([[change objectForKey:NSKeyValueChangeNewKey] boolValue] == YES)
-		{
-			// The AVPlayerLayer is ready for display. Hide the loading spinner and show it.
-			[self stopAndHideLoadingSpinner];
-		}
+- (CMTime)playerItemDuration
+{
+	AVPlayerItem *thePlayerItem = [player currentItem];
+	if (thePlayerItem.status == AVPlayerItemStatusReadyToPlay)
+	{                
+		return(playerItem.duration);
 	}
-	else
-	{
-		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-	}
+    
+	return(kCMTimeInvalid);
 }
 
--(void)setUpPlaybackOfAsset:(AVAsset *)asset withKeys:(NSArray *)keys {
-	// This method is called when the AVAsset for our URL has completing the loading of the values of the specified array of keys.
+- (BOOL)isPlaying
+{
+	return (player.rate != 0.f);
+}
+
+-(void)assetFailedToPrepareForPlayback:(NSError *)error
+{
+    /* Display the error. */
+	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[error localizedDescription]
+														message:[error localizedFailureReason]
+													   delegate:nil
+											  cancelButtonTitle:@"OK"
+											  otherButtonTitles:nil];
+	[alertView show];
+}
+
+- (void)prepareToPlayAsset:(AVURLAsset *)asset withKeys:(NSArray *)requestedKeys
+{
+    rateContext = &rateContext;
+    currentItemContext = &currentItemContext;
+    playerItemStatusContext = &playerItemStatusContext;
     
-	// We set up playback of the asset here.
-	
-	// First test whether the values of each of the keys we need have been successfully loaded.
-	for (NSString *key in keys)
+    /* Make sure that the value of each key has loaded successfully. */
+	for (NSString *thisKey in requestedKeys)
 	{
 		NSError *error = nil;
-		
-		if ([asset statusOfValueForKey:key error:&error] == AVKeyValueStatusFailed)
+		AVKeyValueStatus keyStatus = [asset statusOfValueForKey:thisKey error:&error];
+		if (keyStatus == AVKeyValueStatusFailed)
 		{
-			[self stopAndHideLoadingSpinner];
-            NSLog(@"unplayable asset");
+            C4Log(@"assetFailedToPrepareForPlayback");
+			[self assetFailedToPrepareForPlayback:error];
 			return;
 		}
+		/* If you are also implementing the use of -[AVAsset cancelLoading], add your code here to bail 
+         out properly in the case of cancellation. */
 	}
-	
-	if (![asset isPlayable] || [asset hasProtectedContent])
-	{
-		// We can't play this asset. Show the "Unplayable Asset" label.
-		[self stopAndHideLoadingSpinner];
-        NSLog(@"unplayable asset");
-		return;
-	}
-	
-	// We can play this asset.
-	// Set up an AVPlayerLayer according to whether the asset contains video.
-	if ([[asset tracksWithMediaType:AVMediaTypeVideo] count] != 0)
-	{
-		// Create an AVPlayerLayer and add it to the player view if there is video, but hide it until it's ready for display
-        AVPlayerLayer *newPlayerLayer = [AVPlayerLayer playerLayerWithPlayer:[self player]];
-        newPlayerLayer.frame = self.movieRect;
-
-        self.playerLayer = newPlayerLayer;
+    
+    /* Use the AVAsset playable property to detect whether the asset can be played. */
+    if (!asset.playable) 
+    {
+        /* Generate an error describing the failure. */
+		NSString *localizedDescription = NSLocalizedString(@"Item cannot be played", @"Item cannot be played description");
+		NSString *localizedFailureReason = NSLocalizedString(@"The assets tracks were loaded, but could not be made playable.", @"Item cannot be played failure reason");
+		NSDictionary *errorDict = [NSDictionary dictionaryWithObjectsAndKeys:
+								   localizedDescription, NSLocalizedDescriptionKey, 
+								   localizedFailureReason, NSLocalizedFailureReasonErrorKey, 
+								   nil];
+		NSError *assetCannotBePlayedError = [NSError errorWithDomain:@"C4VideoPlayerController" code:0 userInfo:errorDict];
         
-        [self addObserver:self forKeyPath:@"playerLayer.readyForDisplay" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:readyToDisplay];
+        /* Display the error to the user. */
+        [self assetFailedToPrepareForPlayback:assetCannotBePlayedError];
+        
+        return;
+    }
+	
+	/* At this point we're ready to set up for playback of the asset. */	
+    /* Stop observing our prior AVPlayerItem, if we have one. */
+    if (self.playerItem)
+    {
+        /* Remove existing player item key value observers and notifications. */
+        
+        [self.playerItem removeObserver:self forKeyPath:@"status"];            
+		
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:AVPlayerItemDidPlayToEndTimeNotification
+                                                      object:self.playerItem];
+    }
+	
+    /* Create a new instance of AVPlayerItem from the now successfully loaded AVAsset. */
+    self.playerItem = [AVPlayerItem playerItemWithAsset:asset];
+    
+    /* Observe the player item "status" key to determine when it is ready to play. */
+    [self.playerItem addObserver:self 
+                      forKeyPath:@"status" 
+                         options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
+                         context:playerItemStatusContext];
+	
+    /* When the player item has played to its end time we'll toggle
+     the movie controller Pause button to be the Play button */
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(playerItemDidReachEnd:)
+                                                 name:AVPlayerItemDidPlayToEndTimeNotification
+                                               object:self.playerItem];
+    
+    /* Create new player, if we don't already have one. */
+    if (![self player])
+    {
+        /* Get a new AVPlayer initialized to play the specified player item. */
+        [self setPlayer:[AVPlayer playerWithPlayerItem:self.playerItem]];	
+		
+        /* Observe the AVPlayer "currentItem" property to find out when any 
+         AVPlayer replaceCurrentItemWithPlayerItem: replacement will/did 
+         occur.*/
+        [self.player addObserver:self 
+                      forKeyPath:@"currentItem" 
+                         options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew
+                         context:currentItemContext];
+    }
+    
+    /* Make our new AVPlayerItem the AVPlayer's current item. */
+    if (self.player.currentItem != self.playerItem)
+    {
+        /* Replace the player item with a new player item. The item replacement occurs 
+         asynchronously; observe the currentItem property to find out when the 
+         replacement will/did occur*/
+        C4Log(@"replaceCurrentItemWithPlayerItem");
+        [[self player] replaceCurrentItemWithPlayerItem:self.playerItem];
+    }
+}
+
+- (void)observeValueForKeyPath:(NSString*) path 
+                      ofObject:(id)object 
+                        change:(NSDictionary*)change 
+                       context:(void*)context
+{
+	/* AVPlayerItem "status" property value observer. */
+	if (context == playerItemStatusContext)
+	{
+        
+        AVPlayerStatus status = [[change objectForKey:NSKeyValueChangeNewKey] integerValue];
+        switch (status)
+        {
+                /* Indicates that the status of the player is not yet known because 
+                 it has not tried to load new media resources for playback */
+            case AVPlayerStatusUnknown:
+                C4Log(@"AVPlayerStatusUnknown");
+                break;
+                
+            case AVPlayerStatusReadyToPlay:
+            {
+                /* Once the AVPlayerItem becomes ready to play, i.e. 
+                 [playerItem status] == AVPlayerItemStatusReadyToPlay,
+                 its duration can be fetched from the item. */
+                C4Log(@"AVPlayerStatusReadyToPlay");
+                videoPlayerView.playerLayer.hidden = NO;
+                videoPlayerView.playerLayer.backgroundColor = [[UIColor clearColor] CGColor];
+                
+                /* Set the AVPlayerLayer on the view to allow the AVPlayer object to display
+                 its content. */	
+                [videoPlayerView.playerLayer setPlayer:player];
+                [self play];
+            }
+                break;
+                
+            case AVPlayerStatusFailed:
+            {
+                C4Log(@"AVPlayerStatusFailed");
+                AVPlayerItem *thePlayerItem = (AVPlayerItem *)object;
+                [self assetFailedToPrepareForPlayback:thePlayerItem.error];
+            }
+                break;
+        }
+	}
+	/* AVPlayer "currentItem" property observer. 
+     Called when the AVPlayer replaceCurrentItemWithPlayerItem: 
+     replacement will/did occur. */
+	else if (context == currentItemContext)
+	{
+        AVPlayerItem *newPlayerItem = [change objectForKey:NSKeyValueChangeNewKey];
+        C4Log(@"currentItemContext");
+        
+        /* New player item null? */
+        if (newPlayerItem == (id)[NSNull null])
+        {
+        }
+        else /* Replacement of player currentItem has occurred */
+        {
+            /* Set the AVPlayer for which the player layer displays visual output. */
+            [videoPlayerView.playerLayer setPlayer:self.player];
+            
+            /* Specifies that the player should preserve the video’s aspect ratio and 
+             fit the video within the layer’s bounds. */
+            [videoPlayerView setVideoFillMode:AVLayerVideoGravityResizeAspect];
+        }
 	}
 	else
 	{
-		// This asset has no video tracks. Show the "No Video" label.
-		[self stopAndHideLoadingSpinner];
-        NSLog(@"no video tracks");
+        C4Log(@"else");
+		[super observeValueForKeyPath:path ofObject:object change:change context:context];
 	}
-	
-	// Create a new AVPlayerItem and make it our player's current item.
-    AVPlayerItem *playerItem = [AVPlayerItem playerItemWithAsset:asset];
-	[[self player] replaceCurrentItemWithPlayerItem:playerItem];
+    
+    return;
 }
 
--(void)stopAndHideLoadingSpinner {
-    [self.loadingView stopAnimating];
-    [self.loadingView removeFromSuperview];
+- (void) playerItemDidReachEnd:(NSNotification*) aNotification 
+{
+    C4Log(@"end");
+    [playerItem seekToTime:kCMTimeZero];
 }
 
--(CMTime)currentTime {
-    return player.currentTime;
-}
-
--(CMTime)duration {
-    return [player.currentItem duration];
-}
-
--(void)play {
+- (void)play {
     [player play];
 }
 
--(void)pause {
+- (void)pause {
     [player pause];
 }
 
--(void)seekToTime:(CMTime)newTime {
-    [player seekToTime:newTime];
-}
-
 -(CGFloat)rate {
-    return (CGFloat)player.rate;
+    return player.rate;
 }
 
 -(void)setRate:(CGFloat)newRate {
     player.rate = (float)newRate;
 }
 
--(BOOL)isClosedCaptionDisplayEnabled {
-    return player.closedCaptionDisplayEnabled;
+-(AVPlayerLayer *)movieLayer {
+    return videoPlayerView.playerLayer;
 }
 
--(void)setCloseCaptionDisplayEnabled:(BOOL)newCloseCaptionDisplayEnabled {
-    player.closedCaptionDisplayEnabled = newCloseCaptionDisplayEnabled;
+-(CGRect)frame {
+    return videoPlayerView.frame;
 }
 
+-(void)setFrame:(CGRect)newFrame {
+    videoPlayerView.frame = newFrame;
+}
+
+-(CGPoint)position {
+    return videoPlayerView.playerLayer.position;
+}
+
+-(void)setPosition:(CGPoint)newPosition {
+    videoPlayerView.playerLayer.position = newPosition;
+}
+
+-(void)seekToTime:(CMTime)newTime {
+    [player seekToTime:newTime];
+}
 @end
