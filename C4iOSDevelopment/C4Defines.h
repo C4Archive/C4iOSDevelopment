@@ -9,6 +9,4 @@
 #ifndef C4iOSDevelopment_C4Defines_h
 #define C4iOSDevelopment_C4Defines_h
 
-
-
 #endif

@@ -7,88 +7,72 @@
 //
 
 #import "C4CanvasController.h"
-#import "C4Movie.h"
 
 @interface C4CanvasController()
-@property (readwrite, strong) C4Movie *movieA, *movieB, *movieC;
--(void)pan:(id)sender;
--(void)togglePlayback:(id)sender;
--(void)resetPlayhead:(id)sender;
--(void)seekTimes:(id)sender;
--(void)addMovie:(C4Movie *)newMovie;
+-(void)reset;
 @end
 
 @implementation C4CanvasController
 
-@synthesize canvas, movieA, movieB, movieC;
+C4Image *image;
 
--(void)setup {
-    canvas.backgroundColor = [[UIColor blackColor] CGColor];
-    
-    self.movieA = [[C4Movie alloc] initWithMovieName:@"inception.m4v"
-                                            andFrame:CGRectMake(0, 0, 768, 341)];
-    self.movieB = [[C4Movie alloc] initWithMovieName:@"inception.m4v"
-                                            andFrame:CGRectMake(0, 341, 768, 341)];
-    self.movieC = [[C4Movie alloc] initWithMovieName:@"inception.m4v"
-                                            andFrame:CGRectMake(0, 682, 768, 341)];
-    
-    [self addMovie:movieA];
-    [self addMovie:movieB];
-    [self addMovie:movieC];
+@synthesize canvas;
+-(void)setup {    
+    /* 
      
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
-    pan.minimumNumberOfTouches = 1;
-    pan.maximumNumberOfTouches = 1;
-    [self.view addGestureRecognizer:pan];
+     Oct. 9/2011
+     
+     I'm not sure how this view stuf works... 
+     I thought it was Window->CALayer
+     
+     But, apparently, there's a UIView in between somewhere...
+     Should the canvas be this view?
+     I would prefer it as a CALayer...
+     
+     */
     
-    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(togglePlayback:)];
-    singleTap.numberOfTapsRequired = 1;
-    singleTap.numberOfTouchesRequired = 1;
-    [self.view addGestureRecognizer:singleTap];
+    self.view.userInteractionEnabled = YES;
+    self.view.multipleTouchEnabled = NO;
+    self.view.exclusiveTouch = YES;
     
-    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resetPlayhead:)];
-    doubleTap.numberOfTapsRequired = 1;
-    doubleTap.numberOfTouchesRequired = 2;
-    [self.view addGestureRecognizer:doubleTap];
-
-    UITapGestureRecognizer *tripleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(seekTimes:)];
-    tripleTap.numberOfTapsRequired = 1;
-    tripleTap.numberOfTouchesRequired = 3;
-    [self.view addGestureRecognizer:tripleTap];
+    /* This is how to add taps */
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)];
+    tap.numberOfTapsRequired=1;
+    tap.numberOfTouchesRequired=1;
+    [self.view addGestureRecognizer:tap];
+    
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap)];
+    tap2.numberOfTapsRequired = 1;
+    tap2.numberOfTouchesRequired = 2;
+    [self.view addGestureRecognizer:tap2];
+    
+    UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tripleTap)];
+    tap3.numberOfTapsRequired = 1;
+    tap3.numberOfTouchesRequired = 3;
+    [self.view addGestureRecognizer:tap3];
+    
+    [self reset];
 }
 
--(void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self togglePlayback:nil];
-    [self seekTimes:nil];
+-(void)reset {    
+    image = [C4Image imageNamed:@"C4LogoiPad-01.png"];
+    image.position = CGPointMake(300, 300);
+    image.shadowOpacity = 0.7f;
+    image.shadowOffset = CGSizeMake(0.0f, 3.0f);
+    [canvas addImage:image];
 }
 
--(void)pan:(id)sender {
+-(void)singleTap:(id)sender {
+    image.position = [sender locationOfTouch:0 inView:self.view];
 }
 
--(void)togglePlayback:(id)sender {
-    if(movieA.rate > 0.){
-        [self.movieA pause];
-        [self.movieB pause];
-        [self.movieC pause];
-    } else {
-        [self.movieA play];
-        [self.movieB play];
-        [self.movieC play];
-    }
+-(void)doubleTap {
+    image.bounds = CGRectMake(0,0,72.0f,72.0f);
 }
 
--(void)resetPlayhead:(id)sender {
+-(void)tripleTap {
+    image.bounds = CGRectMake(0,0,14.0f,14.0f);
 }
 
--(void)seekTimes:(id)sender {
-    [self.movieA seekToTime:CMTimeMakeWithSeconds(0, 1)];
-    [self.movieB seekToTime:CMTimeMakeWithSeconds(2, 1)];
-    [self.movieC seekToTime:CMTimeMakeWithSeconds(4, 1)];
-}
-
--(void)addMovie:(C4Movie *)newMovie {
-    [canvas addSublayer:[newMovie movieLayer]];
-}
 @end

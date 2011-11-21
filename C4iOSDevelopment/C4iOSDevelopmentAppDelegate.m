@@ -66,6 +66,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    [C4Vector disposeOfVectorQueueIfNeeded];
     /*
      Called when the application is about to terminate.
      Save data if appropriate.

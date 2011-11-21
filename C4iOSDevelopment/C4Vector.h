@@ -14,8 +14,10 @@
 	CGFloat pVec3[3];
 	CGFloat *vec;
     CGFloat pDisplacedHeading;
+    
 }
 
++(void)disposeOfVectorQueueIfNeeded;
 +(CGFloat)distanceBetweenA:(CGPoint)pointA andB:(CGPoint)pointB;
 +(CGFloat)angleBetweenA:(CGPoint)pointA andB:(CGPoint)pointB;
 
